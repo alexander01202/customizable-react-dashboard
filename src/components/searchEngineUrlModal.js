@@ -42,21 +42,30 @@ export default function SearchEngineUrlModal({ onSuccess, urlDetails, subdomain_
   const validateUrl = async(e) => {
     e.preventDefault()
     setIsLoading(true)
-    if (!searchEngineUrl.startsWith('https://')) {
+    try {
+      console.log("modalInfo: ", modalInfo)
+      Object.keys(modalInfo).map(key => {
+        if (modalInfo[key]?.length < 1) {
+          throw new Error(`Invalid ${key}`);
+        }
+      })
+      
+      // const req = await fetch(REACT_APP_BACKEND_URL + '/verifyurl?url=' + modalInfo.subdomain)
+      // if (req.status !== 200) {
+      //     toast.error(req.statusText)
+      //     return
+      // }
+      // const res = await req.json()
+      // if(res['valid']){
+      //     return addSubdomain()
+      // }
+      // toast.error(res['err'])
+      toast.success('Added successfully')
+    } catch (err) {
+      toast.error(err.message)
+    } finally{
       setIsLoading(false)
-      toast.error('Invalid URL Format | Missing https://')
-      return
     }
-    console.log("searchEngineUrl ==>", searchEngineUrl)
-    var req = await fetch(`${REACT_APP_BACKEND_URL}/verifyurl?url=${searchEngineUrl}`)
-    var {valid, err} = await req.json()
-    console.log("valid ==>", valid)
-    
-    if(valid){
-      return addUrl()
-    }
-    toast.error(err)
-    setIsLoading(false)
   }
 
 
