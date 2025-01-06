@@ -1,0 +1,39 @@
+// Load Bulma's base styles and themes (including the minireset)
+// @use "../node_modules/bulma/sass/base";
+// @use "../node_modules/bulma/sass/themes";
+
+// // Load other Bulma components
+// // @use "bulma/sass/elements/button";
+
+
+// colors
+$primary: #00246B;
+$secondary: #CADCFC;
+$dark-secondary: #ababab;
+$tetiary: #000;
+$thick-blue:#2e4ead;
+
+// Global Page
+$padding: 30px;
+$border-radius:0 15px 15px 0;
+
+// buttons
+$btn-color: $primary;
+
+// Text colors
+$text-color:$secondary;
+
+// Forms
+$form-border-radius: 20px;
+$form-background: #ffffff;
+$form-box-shadow:  16px 16px 33px #ababab,
+-16px -16px 33px #ffffff;
+$dark-form-box-shadow: 16px 16px 33px #313131,
+-16px -16px 33px #313131;
+$form-padding: 20px;
+
+// List items
+$list-border-radius:10px;
+$list-padding:20px;
+$list-box-shadow:1px 1px 5px #898989, -1px -1px 5px #ffffff;
+$list-dark-box-shadow:1px 1px 5px #313131, -1px -1px 5px #313131;

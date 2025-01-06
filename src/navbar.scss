@@ -1,0 +1,181 @@
+@import '_variables.scss';
+@import url('https://fonts.googleapis.com/css2?family=Signika+Negative:wght@300..700&display=swap');
+
+html{
+    min-height: 100vh;
+    background-color: $primary;
+    body{
+        font-family: "Signika Negative", sans-serif !important;
+        background-color: #F1F1F2;
+    }
+}
+
+#root{
+    min-height: 100vh;
+}
+
+.wrapper{
+    padding: 10px;
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: flex-end;
+    background-color: $primary;
+    height: 100%;
+
+    .main_container{
+        width: calc(100% - 200px);
+        margin-top: 70px;
+        margin-left: 200px;
+        padding: 15px;
+        transition: all 0.3s ease;
+        .item{
+            background: #fff;
+            margin-bottom: 10px;
+            padding: 15px;
+            font-size: 14px;
+            line-height: 22px;
+        }
+    }
+    .outer-sidebar{
+        position: relative;
+        z-index: 10;
+        // .sidebar{
+        //     position: fixed;
+        // }
+    }
+    .outer-sidebar, .sidebar{
+        background: $primary;
+        width: 200px;
+        // height: calc(100% - 80px);
+        border-bottom-left-radius: 20px;
+        transition: all 0.3s ease;
+        a{
+            display: block;
+            padding: 20px;
+            color: #fff;
+            position: relative;
+            margin-bottom: 1px;
+            color: $text-color;
+            white-space: nowrap;
+            cursor: pointer;
+            text-decoration: none;
+            border-radius: $border-radius;
+            &:hover,
+            &.active{
+                background: #3f3f3f;
+                transition: all .3s ease-out;
+                color: #fff;
+                &:before{
+                    transition: 0.3s ease-in;
+                    display: block;
+                }
+            }
+            span.icon{
+                margin-right: 10px;
+                display: inline-block;
+                font-size: 20px;
+            }
+            span.title{
+                display: inline-block;
+            }
+            &:before{
+                content: "";
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 3px;
+                height: 100%;
+                background: $secondary;
+                display: none;
+            }
+        }
+    }
+    .top_navbar{
+        width: fit-content;
+        height: 60px;
+        display: flex;
+        // position: fixed;
+        top: 10px;
+        z-index: 10;
+      .top_menu{
+          width: calc(100% - 70px);
+          height: 100%;
+          background: $primary;
+          border-top-right-radius: 20px;
+          display: flex;
+          justify-content: flex-end;
+          align-items: center;
+          padding: 0 20px;
+          box-shadow: 0 1px 1px rgba(0,0,0,0.1);
+            .logo{
+                color: #2e4ead;
+                font-size: 20px;
+                font-weight: 700;
+                letter-spacing: 3px;
+            }
+            ul{
+                display: flex;
+                li a{
+                    display: block;
+                    margin: 0 10px;
+                    width: 35px;
+                    height: 35px;
+                    line-height: 35px;
+                    text-align: center;
+                    border: 1px solid $secondary;
+                    border-radius: 50%;
+                    color: $primary;
+                    &:hover{
+                        background: $tetiary;
+                        color: #fff;
+                        i{
+                            color: #fff;
+                        }
+                    }
+                }
+            }
+        }
+        .hamburger{
+            width: 70px;
+            height: 100%;
+            background: $primary;
+            padding: 15px 17px;
+            border-top-left-radius: 20px;
+            cursor: pointer;
+            div{
+                width: 35px;
+                height: 4px;
+                background: $secondary;
+                margin: 5px 0;
+                border-radius: 5px;
+            }
+        }
+    }
+}
+.wrapper.collapse{
+    .main_container{
+        width: calc(100% - 70px);
+        margin-left: 70px;
+    }
+    &:not(.show){
+        display: flex;
+    }
+    .outer-sidebar, .sidebar{
+        width: 70px;
+        a{
+            text-align: center;
+            span.icon{
+                margin: 0;
+                font-size: 20px;
+            }
+            span.title{
+                display: none;
+            }
+            &:hover,
+            &.active{
+                background-color: transparent;
+            }
+        }      
+    }
+}
+  

@@ -1,0 +1,43 @@
+@import '_variables.scss';
+@import '_buttons.scss';
+@import '_inputs.scss';
+
+.login-bg{
+    border-radius: $form-border-radius;
+    box-shadow: $form-box-shadow;
+    background-color: $form-background;
+    padding: $form-padding + 20;
+    width: 40%;
+    height: 80%;
+}
+
+.login-btn{
+    background-color: $btn-color;
+}
+
+/* Extra small devices (phones, 320px and up) */
+@media (min-width: 320px) {
+    /* Styles for small phones */
+    .login-bg{
+        height: 100%;
+    }
+}
+
+/* Small devices (phones, 375px and up) */
+@media (min-width: 375px) {
+    /* Styles for regular phones */
+}
+
+/* Tablets and medium screens (768px and up) */
+@media (min-width: 768px) {
+    /* Styles for tablets */
+}
+
+/* Large devices (desktops, 1200px and up) */
+@media (min-width: 1200px) {
+    /* Styles for larger screens */
+    .login-bg{
+        height: 60%;
+    }
+}
+

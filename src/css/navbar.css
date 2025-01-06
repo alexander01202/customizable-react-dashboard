@@ -1,0 +1,169 @@
+@import url("https://fonts.googleapis.com/css2?family=Signika+Negative:wght@300..700&display=swap");
+html {
+  min-height: 100vh;
+  background-color: #00246B;
+}
+html body {
+  font-family: "Signika Negative", sans-serif !important;
+  background-color: #F1F1F2;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+.wrapper {
+  padding: 10px;
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: flex-end;
+  background-color: #00246B;
+  height: 100%;
+}
+.wrapper .main_container {
+  width: calc(100% - 200px);
+  margin-top: 70px;
+  margin-left: 200px;
+  padding: 15px;
+  transition: all 0.3s ease;
+}
+.wrapper .main_container .item {
+  background: #fff;
+  margin-bottom: 10px;
+  padding: 15px;
+  font-size: 14px;
+  line-height: 22px;
+}
+.wrapper .outer-sidebar {
+  position: relative;
+  z-index: 10;
+}
+.wrapper .outer-sidebar, .wrapper .sidebar {
+  background: #00246B;
+  width: 200px;
+  border-bottom-left-radius: 20px;
+  transition: all 0.3s ease;
+}
+.wrapper .outer-sidebar a, .wrapper .sidebar a {
+  display: block;
+  padding: 20px;
+  color: #fff;
+  position: relative;
+  margin-bottom: 1px;
+  color: #CADCFC;
+  white-space: nowrap;
+  cursor: pointer;
+  text-decoration: none;
+  border-radius: 0 15px 15px 0;
+}
+.wrapper .outer-sidebar a:hover, .wrapper .outer-sidebar a.active, .wrapper .sidebar a:hover, .wrapper .sidebar a.active {
+  background: #3f3f3f;
+  transition: all 0.3s ease-out;
+  color: #fff;
+}
+.wrapper .outer-sidebar a:hover:before, .wrapper .outer-sidebar a.active:before, .wrapper .sidebar a:hover:before, .wrapper .sidebar a.active:before {
+  transition: 0.3s ease-in;
+  display: block;
+}
+.wrapper .outer-sidebar a span.icon, .wrapper .sidebar a span.icon {
+  margin-right: 10px;
+  display: inline-block;
+  font-size: 20px;
+}
+.wrapper .outer-sidebar a span.title, .wrapper .sidebar a span.title {
+  display: inline-block;
+}
+.wrapper .outer-sidebar a:before, .wrapper .sidebar a:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 3px;
+  height: 100%;
+  background: #CADCFC;
+  display: none;
+}
+.wrapper .top_navbar {
+  width: fit-content;
+  height: 60px;
+  display: flex;
+  top: 10px;
+  z-index: 10;
+}
+.wrapper .top_navbar .top_menu {
+  width: calc(100% - 70px);
+  height: 100%;
+  background: #00246B;
+  border-top-right-radius: 20px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 0 20px;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+}
+.wrapper .top_navbar .top_menu .logo {
+  color: #2e4ead;
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 3px;
+}
+.wrapper .top_navbar .top_menu ul {
+  display: flex;
+}
+.wrapper .top_navbar .top_menu ul li a {
+  display: block;
+  margin: 0 10px;
+  width: 35px;
+  height: 35px;
+  line-height: 35px;
+  text-align: center;
+  border: 1px solid #CADCFC;
+  border-radius: 50%;
+  color: #00246B;
+}
+.wrapper .top_navbar .top_menu ul li a:hover {
+  background: #000;
+  color: #fff;
+}
+.wrapper .top_navbar .top_menu ul li a:hover i {
+  color: #fff;
+}
+.wrapper .top_navbar .hamburger {
+  width: 70px;
+  height: 100%;
+  background: #00246B;
+  padding: 15px 17px;
+  border-top-left-radius: 20px;
+  cursor: pointer;
+}
+.wrapper .top_navbar .hamburger div {
+  width: 35px;
+  height: 4px;
+  background: #CADCFC;
+  margin: 5px 0;
+  border-radius: 5px;
+}
+
+.wrapper.collapse .main_container {
+  width: calc(100% - 70px);
+  margin-left: 70px;
+}
+.wrapper.collapse:not(.show) {
+  display: flex;
+}
+.wrapper.collapse .outer-sidebar, .wrapper.collapse .sidebar {
+  width: 70px;
+}
+.wrapper.collapse .outer-sidebar a, .wrapper.collapse .sidebar a {
+  text-align: center;
+}
+.wrapper.collapse .outer-sidebar a span.icon, .wrapper.collapse .sidebar a span.icon {
+  margin: 0;
+  font-size: 20px;
+}
+.wrapper.collapse .outer-sidebar a span.title, .wrapper.collapse .sidebar a span.title {
+  display: none;
+}
+.wrapper.collapse .outer-sidebar a:hover, .wrapper.collapse .outer-sidebar a.active, .wrapper.collapse .sidebar a:hover, .wrapper.collapse .sidebar a.active {
+  background-color: transparent;
+}

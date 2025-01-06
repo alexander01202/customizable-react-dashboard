@@ -1,0 +1,72 @@
+body {
+  overflow-x: hidden;
+}
+
+.skeleton-list {
+  border-radius: 10px;
+}
+
+tbody, th, tr, td {
+  padding: 15px !important; /* or any desired value */
+}
+
+.table {
+  --bs-table-bg: #ababab !important ;
+}
+
+table {
+  box-shadow: 16px 16px 33px #313131, -16px -16px 33px #313131;
+}
+table tbody a {
+  color: #000;
+  text-decoration: none;
+}
+
+.subdomain {
+  background-color: #fff;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+.subdomain a {
+  text-decoration: none;
+  color: initial;
+}
+.subdomain .subdomain-info {
+  justify-content: flex-end;
+}
+.subdomain:hover {
+  border: 2px solid #0056ff;
+  transition: all 0.1s ease-in-out;
+}
+
+.subdomain-header, .subdomain-info {
+  text-align: center;
+  min-width: 20%;
+  max-width: 20%;
+}
+
+.subdomain-list-header {
+  display: flex;
+  align-items: center;
+}
+
+.subdomain-header span {
+  text-transform: uppercase;
+}
+
+.subdomain.selected {
+  background-color: #CADCFC;
+  border: 2px solid #0056ff;
+  transition: all 0.1s ease-in-out;
+}
+
+.ellipsis {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 250px; /* Adjust as needed */
+  display: inline-block; /* Ensure proper truncation */
+  vertical-align: bottom; /* Optional: to vertically align with the icon */
+}

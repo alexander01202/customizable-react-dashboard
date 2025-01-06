@@ -1,0 +1,75 @@
+@import '_variables.scss';
+
+body{
+    overflow-x: hidden;
+}
+
+.skeleton-list{
+    border-radius: $list-border-radius;
+    // box-shadow: $list-box-shadow;
+}
+tbody, th, tr, td {
+    padding: 15px !important; /* or any desired value */
+}
+.table{
+    --bs-table-bg: #ababab !important
+}
+table{
+    box-shadow: 16px 16px 33px #313131,
+    -16px -16px 33px #313131;;
+
+    tbody{
+        a{
+            color: #000;
+            text-decoration: none;
+            
+        }
+    }
+}
+.subdomain{
+    background-color: #fff;
+    border-radius: $list-border-radius;
+    display: flex;
+    // box-shadow: $list-box-shadow;
+    align-items: center;
+    cursor: pointer;
+    a{
+        text-decoration: none;
+        color: initial;
+    }
+    .subdomain-info{
+        justify-content: flex-end;
+    }
+    &:hover{
+        border: 2px solid #0056ff;
+        transition: all 0.1s ease-in-out;
+    }
+    // padding: $list-padding;
+}
+.subdomain-header, .subdomain-info{
+    text-align: center;
+    min-width: 20%;
+    max-width: 20%;
+}
+.subdomain-list-header{
+    display: flex;
+    align-items: center;
+}
+.subdomain-header{
+    span{
+        text-transform: uppercase;
+    }
+}
+.subdomain.selected{
+    background-color: $secondary;
+    border: 2px solid #0056ff;
+    transition: all 0.1s ease-in-out;
+}
+.ellipsis {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 250px; /* Adjust as needed */
+    display: inline-block; /* Ensure proper truncation */
+    vertical-align: bottom; /* Optional: to vertically align with the icon */
+}

@@ -1,0 +1,130 @@
+@charset "UTF-8";
+.main-button {
+  background-color: #00246B;
+  color: #FFFFFF;
+  text-align: center;
+  font-size: 17px;
+  padding: 16px;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 5px;
+}
+.main-button:disabled, .main-button:hover {
+  background-color: #003b92;
+  border-color: #003b92;
+}
+.main-button:disabled span, .main-button:hover span {
+  padding-right: 15px;
+}
+.main-button:disabled span:after, .main-button:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+.main-button span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+.main-button span:after {
+  content: "»";
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -15px;
+  transition: 0.5s;
+}
+
+.input[type=checkbox] {
+  display: none;
+}
+
+/* Style for the custom checkbox */
+.custom-checkbox {
+  margin-top: 0.35em;
+  vertical-align: top;
+  display: inline-block;
+  width: 15px;
+  height: 15px;
+  border: 2px solid #d6d6d6;
+  border-radius: 4px;
+  position: relative;
+  cursor: pointer;
+}
+.custom-checkbox::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 49%;
+  transform: translate(-50%, -50%);
+  width: 9px;
+  height: 9px;
+  background-color: #333;
+  border-radius: 2px;
+  opacity: 0;
+}
+
+/* Show the checkmark when checkbox is checked */
+.input[type=checkbox]:checked + .custom-checkbox::after {
+  opacity: 1;
+}
+
+.input[type=checkbox]:checked + .custom-checkbox {
+  border-color: #333;
+}
+
+.main-input {
+  height: 45px;
+  padding: 12px;
+  border: 1.5px solid lightgrey;
+  outline: none;
+  transition: all 0.3s cubic-bezier(0.19, 1, 0.22, 1) !important;
+  box-shadow: 0px 0px 20px -18px;
+}
+.main-input:hover {
+  border: 2px solid lightgrey !important;
+  box-shadow: 0px 0px 20px -17px !important;
+}
+.main-input:focus {
+  border: 2px solid #00246B !important;
+  box-shadow: none !important;
+}
+.main-input:active {
+  transform: scale(0.95);
+}
+
+.login-bg {
+  border-radius: 20px;
+  box-shadow: 16px 16px 33px #ababab, -16px -16px 33px #ffffff;
+  background-color: #ffffff;
+  padding: 40px;
+  width: 40%;
+  height: 80%;
+}
+
+.login-btn {
+  background-color: #00246B;
+}
+
+/* Extra small devices (phones, 320px and up) */
+@media (min-width: 320px) {
+  /* Styles for small phones */
+  .login-bg {
+    height: 100%;
+  }
+}
+/* Small devices (phones, 375px and up) */
+@media (min-width: 375px) {
+  /* Styles for regular phones */
+}
+/* Tablets and medium screens (768px and up) */
+@media (min-width: 768px) {
+  /* Styles for tablets */
+}
+/* Large devices (desktops, 1200px and up) */
+@media (min-width: 1200px) {
+  /* Styles for larger screens */
+  .login-bg {
+    height: 60%;
+  }
+}

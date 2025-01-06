@@ -1,0 +1,52 @@
+@import '../_variables.scss';
+.subdomain-list {
+    // background: rgb(245, 245, 245);
+    background: #3f3f3f;
+    border-radius: 20px;
+    padding: 40px;
+    backdrop-filter: blur(10px);
+    width: 100%;
+    min-height: 100vh;
+}
+
+.avatar{
+    width:50px !important; 
+    height: 50px !important; 
+}
+
+.paste-button{
+    align-self:flex-end;
+    width: fit-content;
+    &:hover{
+        .dropdown-content {
+            display: block;
+        }
+    }
+}
+
+.dropdown-content {
+    display: none;
+    font-size: 13px;
+    position: absolute;
+    z-index: 1;
+    background-color: $primary;
+    border: 2px solid $secondary;
+    border-radius: 0px 15px 15px 15px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    a{
+        color: $secondary;
+        padding: 8px 10px;
+        text-decoration: none;
+        display: block;
+        &:hover {
+            background-color: $tetiary;
+            color: #fff;
+        }
+    }
+    #top:hover, #top:focus {
+        border-radius: 0px 13px 0px 0px;
+    }
+    #bottom:hover, #bottom:focus {
+        border-radius: 0px 0px 13px 13px;
+    }
+}

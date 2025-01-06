@@ -1,0 +1,76 @@
+.main-button {
+    background-color: $btn-color;
+    color: #FFFFFF;
+    text-align: center;
+    font-size: 17px;
+    padding: 16px;
+    transition: all 0.5s;
+    cursor: pointer;
+    margin: 5px;
+    &:disabled,
+    &:hover {
+        background-color: #003b92;
+        border-color: #003b92;
+        span {
+            padding-right: 15px;
+            &:after {
+                opacity: 1;
+                right: 0;
+            }
+        };
+    }
+    span {
+        cursor: pointer;
+        display: inline-block;
+        position: relative;
+        transition: 0.5s;
+        &:after {
+            content: '»';
+            position: absolute;
+            opacity: 0;
+            top: 0;
+            right: -15px;
+            transition: 0.5s;
+        }
+    }
+}
+
+.input[type="checkbox"] {
+    display: none;
+}
+  
+  
+/* Style for the custom checkbox */
+.custom-checkbox {
+    margin-top: 0.35em;
+    vertical-align: top;
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    border: 2px solid #d6d6d6;
+    border-radius: 4px;
+    position: relative;
+    cursor: pointer;
+    &::after {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 49%;
+        transform: translate(-50%, -50%);
+        width: 9px;
+        height: 9px;
+        background-color: #333;
+        border-radius: 2px;
+        opacity: 0;
+    }
+}
+
+
+/* Show the checkmark when checkbox is checked */
+.input[type="checkbox"]:checked + .custom-checkbox::after {
+    opacity: 1;
+}
+
+.input[type="checkbox"]:checked + .custom-checkbox {
+    border-color: #333;
+}
