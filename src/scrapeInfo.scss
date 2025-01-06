@@ -1,8 +1,8 @@
-@import '_variables.scss';
+@import '_light_mode_variables.scss';
 
 .box{
     border-radius: 15px;
-    box-shadow: $list-dark-box-shadow;
+    box-shadow: $list-box-shadow;
     min-width: 200px;
     min-height: 150px;
     img{
@@ -20,7 +20,7 @@
     }
 }
 .box:not(.box-skeleton){
-    background: $dark-secondary;
+    background: $secondary;
     &:hover{
         color: #fff;
         background-color: #313131;

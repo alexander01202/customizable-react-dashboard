@@ -1,4 +1,4 @@
-@import '_variables.scss';
+@import '_light_mode_variables.scss';
 
 body{
     overflow-x: hidden;
@@ -12,17 +12,15 @@ tbody, th, tr, td {
     padding: 15px !important; /* or any desired value */
 }
 .table{
-    --bs-table-bg: #ababab !important
+    --bs-table-bg: $tbl-bg !important
 }
 table{
-    box-shadow: 16px 16px 33px #313131,
-    -16px -16px 33px #313131;;
+    box-shadow: 10px 10px 15px #898989, -1px -1px 5px #ffffff;
 
     tbody{
         a{
             color: #000;
             text-decoration: none;
-            
         }
     }
 }

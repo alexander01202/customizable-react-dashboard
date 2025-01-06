@@ -1,4 +1,4 @@
-@import '_variables.scss';
+@import '_light_mode_variables.scss';
 @import url('https://fonts.googleapis.com/css2?family=Signika+Negative:wght@300..700&display=swap');
 
 html{
@@ -62,9 +62,9 @@ html{
             border-radius: $border-radius;
             &:hover,
             &.active{
-                background: #3f3f3f;
+                background: $nav-active-btn-bg;
                 transition: all .3s ease-out;
-                color: #fff;
+                color: $nav-active-btn-text-color;
                 &:before{
                     transition: 0.3s ease-in;
                     display: block;

@@ -1,6 +1,6 @@
 .box {
   border-radius: 15px;
-  box-shadow: 1px 1px 5px #313131, -1px -1px 5px #313131;
+  box-shadow: 1px 1px 5px #898989, -1px -1px 5px #ffffff;
   min-width: 200px;
   min-height: 150px;
 }
@@ -19,7 +19,7 @@
 }
 
 .box:not(.box-skeleton) {
-  background: #ababab;
+  background: #ffffff;
 }
 .box:not(.box-skeleton):hover {
   color: #fff;

@@ -11,11 +11,11 @@ tbody, th, tr, td {
 }
 
 .table {
-  --bs-table-bg: #ababab !important ;
+  --bs-table-bg: $tbl-bg !important ;
 }
 
 table {
-  box-shadow: 16px 16px 33px #313131, -16px -16px 33px #313131;
+  box-shadow: 10px 10px 15px #898989, -1px -1px 5px #ffffff;
 }
 table tbody a {
   color: #000;
@@ -57,7 +57,7 @@ table tbody a {
 }
 
 .subdomain.selected {
-  background-color: #CADCFC;
+  background-color: #ffffff;
   border: 2px solid #0056ff;
   transition: all 0.1s ease-in-out;
 }

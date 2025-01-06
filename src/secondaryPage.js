@@ -1,6 +1,6 @@
 import { useEffect, useState, useRef } from "react";
 import { Stack, Button, Form, Table, ProgressBar } from "react-bootstrap";
-import { REACT_APP_BACKEND_URL, defaultOptions, SECONDARY_PAGE_MODAL_TITLE, SECONDARY_PAGE_DASHBOARD_HEADERS, DEVELOPMENT_PHASE, SECONDARY_PAGE_FAKE_DATA } from "./dev_variables";
+import { REACT_APP_BACKEND_URL, defaultOptions, SECONDARY_PAGE_MODAL_TITLE, SECONDARY_PAGE_DASHBOARD_HEADERS, DEVELOPMENT_PHASE, SECONDARY_PAGE_FAKE_DATA, DARK_MODE_BTN } from "./dev_variables";
 import { useLoaderData, Link, useParams } from "react-router-dom";
 import Lottie from "react-lottie";
 import './css/searchEngineUrls.css'
@@ -107,7 +107,7 @@ export default function SecondaryPage() {
     <SearchEngineUrlModal onSuccess={onUrlSuccess} urlDetails={modalInfo.urlInfo} subdomain_type={type} subdomain_id={subdomain_id} toast={toast} handleShow={handleShow} show={modalInfo.show}/>
     <Stack gap={2} className='my-3' direction='horizontal'>
       <Stack className='justify-content-start' gap={2} direction='horizontal'>
-        <Button onClick={() => setModalInfo({ show:true, beginScrape:true, urlInfo:{} })} className='edit-btn' size="md" variant="p-2 btn-light">{SECONDARY_PAGE_MODAL_TITLE}</Button>
+        <Button onClick={() => setModalInfo({ show:true, beginScrape:true, urlInfo:{} })} className='edit-btn' size="md" variant={`p-2 btn-${DARK_MODE_BTN ? 'dark' : 'light'}`}>{SECONDARY_PAGE_MODAL_TITLE}</Button>
         <Button className='delete-btn' size="md" variant="p-2 btn-danger primary">Delete</Button>
       </Stack>
       <Form className="ms-auto d-flex">

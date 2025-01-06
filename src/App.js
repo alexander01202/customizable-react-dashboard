@@ -5,7 +5,7 @@ import { Blocks, BallTriangle } from 'react-loader-spinner'
 import './css/App.css'
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import React, { useEffect, useState } from 'react';
-import { REACT_APP_BACKEND_URL, MAIN_PAGE_DASHBOARD_HEADERS, MAIN_PAGE_FAKE_DATA, DEVELOPMENT_PHASE } from './dev_variables';
+import { REACT_APP_BACKEND_URL, MAIN_PAGE_DASHBOARD_HEADERS, MAIN_PAGE_FAKE_DATA, DEVELOPMENT_PHASE, DARK_MODE_BTN } from './dev_variables';
 import Lottie from 'react-lottie';
 import not_found from './lottie/not_found.json'
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
@@ -214,7 +214,7 @@ function App() {
     />
         <Stack gap={2} className='my-3' direction='horizontal'>
         <Stack className='justify-content-start' gap={2} direction='horizontal'>
-          <Button onClick={() => setModalInfo({ show:true })} className='edit-btn' size="md" variant="p-2 btn-light">Add new CSV Article</Button>
+          <Button onClick={() => setModalInfo({ show:true })} className='edit-btn' size="md" variant={`p-2 btn-${DARK_MODE_BTN ? 'dark' : 'light'}`}>Add new CSV Article</Button>
           <Button className='delete-btn' size="md" variant="p-2 btn-danger primary">Delete</Button>
         </Stack>
           <Form className="ms-auto d-flex">
@@ -224,7 +224,7 @@ function App() {
               className="me-2 main-input"
               aria-label="Search"
             />
-            <Button variant="light">Search</Button>
+            <Button variant={`${DARK_MODE_BTN ? 'dark' : 'light'}`}>Search</Button>
           </Form>
         </Stack>
         <Table striped hover>

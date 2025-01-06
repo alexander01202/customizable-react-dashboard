@@ -1,7 +1,8 @@
-@import '../_variables.scss';
+@import '../_light_mode_variables.scss';
+
 .subdomain-list {
     // background: rgb(245, 245, 245);
-    background: #3f3f3f;
+    background: $secondary;
     border-radius: 20px;
     padding: 40px;
     backdrop-filter: blur(10px);

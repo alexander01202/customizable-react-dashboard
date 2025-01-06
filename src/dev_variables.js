@@ -1,7 +1,7 @@
 import not_found from './lottie/not_found.json'
 import logo from './assets/logo.png'
 
-
+export const DARK_MODE_BTN = true
 export const REACT_APP_BACKEND_URL = process.env.NODE_ENV === 'development' ? 'http://127.0.0.1:8000' : "https://admin.appnotis.com:3000"
 export const defaultOptions = {
     loop: true,

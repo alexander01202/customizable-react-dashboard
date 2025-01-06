@@ -50,14 +50,14 @@ html body {
   color: #fff;
   position: relative;
   margin-bottom: 1px;
-  color: #CADCFC;
+  color: #ffffff;
   white-space: nowrap;
   cursor: pointer;
   text-decoration: none;
   border-radius: 0 15px 15px 0;
 }
 .wrapper .outer-sidebar a:hover, .wrapper .outer-sidebar a.active, .wrapper .sidebar a:hover, .wrapper .sidebar a.active {
-  background: #3f3f3f;
+  background: #000;
   transition: all 0.3s ease-out;
   color: #fff;
 }
@@ -80,7 +80,7 @@ html body {
   left: 0;
   width: 3px;
   height: 100%;
-  background: #CADCFC;
+  background: #ffffff;
   display: none;
 }
 .wrapper .top_navbar {
@@ -117,7 +117,7 @@ html body {
   height: 35px;
   line-height: 35px;
   text-align: center;
-  border: 1px solid #CADCFC;
+  border: 1px solid #ffffff;
   border-radius: 50%;
   color: #00246B;
 }
@@ -139,7 +139,7 @@ html body {
 .wrapper .top_navbar .hamburger div {
   width: 35px;
   height: 4px;
-  background: #CADCFC;
+  background: #ffffff;
   margin: 5px 0;
   border-radius: 5px;
 }
