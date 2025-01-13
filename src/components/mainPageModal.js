@@ -48,26 +48,20 @@ export default function MainPageModal({ handleShow, show, toast, onSuccess, moda
     }))
   };
 
-  const addSubdomain = async() => {
+  const addData = async() => {
     let headers = new Headers();
 
     headers.append('Content-Type', 'application/json');
     headers.append('Accept', 'application/json');
-    var req = {
-      domain_type:modalInfo.subdomain_type, 
-      subdomain:modalInfo.subdomain, 
-      location:modalInfo.location, 
-      status:true
-    }
-    var url = REACT_APP_BACKEND_URL + '/subdomains'
-    if (modalInfo.subdomain_id.length > 0) {
-      url = REACT_APP_BACKEND_URL + '/update/subdomain'
-      req = {...req, subdomain_id: modalInfo.subdomain_id}
-    }
+    var url = REACT_APP_BACKEND_URL + '/csvarticle'
+    // if (modalInfo.subdomain_id.length > 0) {
+    //   url = REACT_APP_BACKEND_URL + '/update/subdomain'
+    //   req = {...req, subdomain_id: modalInfo.subdomain_id}
+    // }
 
     fetch(url, {
       method:'POST',
-      body: JSON.stringify(req),
+      body: JSON.stringify(modalInfo),
       headers,
     })
     .then(response => {
@@ -75,14 +69,14 @@ export default function MainPageModal({ handleShow, show, toast, onSuccess, moda
         toast.error(response.statusText)
         return
       }
-      toast.success(`Subdomain ${modalInfo.subdomain_id.length > 0 ? 'updated' : 'added'} successfully`)
+      toast.success(`csv articles successfully added`)
       onSuccess()
-      setModalInfo(prev => ({
-        ...prev,
-        location:'',
-        subdomain: '',
-        subdomain_id:''
-      }))
+      Object.keys(MAIN_PAGE_MODAL_DEFAULT_INFO).forEach(key => {
+        setModalInfo(prev => ({
+          ...prev,
+          [key]:MAIN_PAGE_MODAL_DEFAULT_INFO[key],
+        }))
+      });
       handleShow()
     })
     .catch(err => {
@@ -101,7 +95,7 @@ export default function MainPageModal({ handleShow, show, toast, onSuccess, moda
           throw new Error(`Invalid ${key}`);
         }
       })
-      
+      addData()
       // const req = await fetch(REACT_APP_BACKEND_URL + '/verifyurl?url=' + modalInfo.subdomain)
       // if (req.status !== 200) {
       //     toast.error(req.statusText)
@@ -112,7 +106,6 @@ export default function MainPageModal({ handleShow, show, toast, onSuccess, moda
       //     return addSubdomain()
       // }
       // toast.error(res['err'])
-      toast.success('Added successfully')
     } catch (err) {
       toast.error(err.message)
     } finally{
@@ -130,15 +123,17 @@ export default function MainPageModal({ handleShow, show, toast, onSuccess, moda
           <Form>
             {
               MAIN_PAGE_MODAL_INPUT_OPTIONS.map(options => (
-                <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                <Form.Group className="mb-3" >
                   
                   {
                     ['switch', 'checkbox'].includes(options.type)
                     ?
                     <Form.Check
+                      id={`${options.value_reference}`}
                       type={options.type}
                       value={modalInfo[`${options.value_reference}`]}
                       label={options.label}
+                      onChange={changeSubdomain}
                     />
                     :
                     <>

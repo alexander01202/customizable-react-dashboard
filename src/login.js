@@ -74,48 +74,104 @@ export default function Login() {
     }
 
   return (
-    <Container style={{"height":"100%"}} className='d-flex align-items-center justify-content-center'>
-        <Form method='GET' className='login-bg'>
-            <div className='my-5'>
-                <h4>Welcome back</h4>
-                <h2>{OWNER_NAME}</h2>
-            </div>
-            <Form.Group className="mb-4" controlId="formBasicEmail">
-                <Form.Label>Email address</Form.Label>
-                <Form.Control 
-                    name="email" 
-                    className='main-input'
-                    type="email"
-                    placeholder="Enter email" 
-                    value={email}
-                    onChange={changeEmail}
-                    required 
-                />
-            </Form.Group>
+   <>
+   
+   <Container 
+             
+            className="d-flex align-items-center justify-content-center"
+            style={{ height:"100%" }}
+        >
+            <Form method="GET" className="login-bg">
+                <div style={{ marginTop:"10rem !important"}} className='my-5'>
+                    <h4>Welcome back</h4>
+                    <h2>{OWNER_NAME}</h2>
+                </div>
+                <Form.Group className="mb-4" controlId="formBasicEmail">
+                    <Form.Label>Email address</Form.Label>
+                    <Form.Control
+                        name="email"
+                        className="main-input"
+                        type="email"
+                        placeholder="Enter email"
+                        value={email}
+                        onChange={changeEmail}
+                        required
+                    />
+                </Form.Group>
+                <Form.Group className="mb-4" controlId="formBasicPassword">
+                    <Form.Label>Password</Form.Label>
+                    <Form.Control
+                        name="password"
+                        className="main-input"
+                        type="password"
+                        placeholder="Password"
+                        value={password}
+                        onChange={changePassword}
+                        required
+                    />
+                </Form.Group>
+                <Form.Group className="mb-2" controlId="formBasicCheckbox">
+                    <Form.Check type="checkbox" label="Remember me" />
+                </Form.Group>
+                <div style={{ marginTop:"8rem!important"}} className="d-grid gap-2 my-5">
+                    <Button 
+                        disabled={isLoading} 
+                        onClick={loginAdmin} 
+                        className="btn main-button" 
+                        type="submit" 
+                        size="lg"
+                    >
+                        <span>Submit</span>
+                    </Button>
+                </div>
+            </Form>
+            <ToastContainer />
+        </Container>
+   
+   </>
+   
+    // <Container style={{"height":"100%"}} className='d-flex align-items-center justify-content-center'>
+    //     <Form method='GET' className='login-bg'>
+    //         <div className=''>
+    //             <h4>Welcome back</h4>
+    //             <h2>{OWNER_NAME}</h2>
+    //         </div>
+    //         <Form.Group className="mb-4" controlId="formBasicEmail">
+    //             <Form.Label>Email address</Form.Label>
+    //             <Form.Control 
+    //                 name="email" 
+    //                 className='main-input'
+    //                 type="email"
+    //                 placeholder="Enter email" 
+    //                 value={email}
+    //                 onChange={changeEmail}
+    //                 required 
+    //             />
+    //         </Form.Group>
 
-            <Form.Group className="mb-4" controlId="formBasicPassword">
-                <Form.Label>Password</Form.Label>
-                <Form.Control 
-                    name="password" 
-                    className='main-input'
-                    type="password" 
-                    placeholder="Password"
-                    value={password}
-                    onChange={changePassword}
-                    required
-                />
-            </Form.Group>
+    //         <Form.Group className="mb-4" controlId="formBasicPassword">
+    //             <Form.Label>Password</Form.Label>
+    //             <Form.Control 
+    //                 name="password" 
+    //                 className='main-input'
+    //                 type="password" 
+    //                 placeholder="Password"
+    //                 value={password}
+    //                 onChange={changePassword}
+    //                 required
+    //             />
+    //         </Form.Group>
             
-            <Form.Group className="mb-3" controlId="formBasicCheckbox">
-                <Form.Check type="checkbox" label="Remember me" />
-            </Form.Group>
-            <div className="d-grid gap-2 mt-5">
-                <Button disabled={isLoading} onClick={loginAdmin} className='btn main-button' type="submit" size="lg">
-                    <span>Submit</span>
-                </Button>
-            </div>
-        </Form>
-        <ToastContainer />
-    </Container>
+    //         <Form.Group className="mb-3" controlId="formBasicCheckbox">
+    //             <Form.Check type="checkbox" label="Remember me" />
+    //         </Form.Group>
+    //         <div className="d-grid gap-2 mt-5">
+    //             <Button disabled={isLoading} onClick={loginAdmin} className='btn main-button' type="submit" size="lg">
+    //                 <span>Submit</span>
+    //             </Button>
+    //         </div>
+    //     </Form>
+    //     <ToastContainer />
+    // </Container>
   );
 }

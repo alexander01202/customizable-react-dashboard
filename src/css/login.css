@@ -97,34 +97,31 @@
   border-radius: 20px;
   box-shadow: 16px 16px 33px #ababab, -16px -16px 33px #ffffff;
   background-color: #ffffff;
-  padding: 40px;
-  width: 40%;
-  height: 80%;
+  padding: 20px;
+  width: 90%;
+  height: auto;
+}
+@media (min-width: 768px) {
+  .login-bg {
+    width: 60%;
+  }
+}
+@media (min-width: 1200px) {
+  .login-bg {
+    width: 40%;
+    padding: 40px;
+  }
 }
 
 .login-btn {
   background-color: #00246B;
 }
 
-/* Extra small devices (phones, 320px and up) */
-@media (min-width: 320px) {
-  /* Styles for small phones */
-  .login-bg {
-    height: 100%;
-  }
+.main-input {
+  margin-top: 10px;
+  padding: 10px;
 }
-/* Small devices (phones, 375px and up) */
-@media (min-width: 375px) {
-  /* Styles for regular phones */
-}
-/* Tablets and medium screens (768px and up) */
-@media (min-width: 768px) {
-  /* Styles for tablets */
-}
-/* Large devices (desktops, 1200px and up) */
-@media (min-width: 1200px) {
-  /* Styles for larger screens */
-  .login-bg {
-    height: 60%;
-  }
+
+.d-grid {
+  margin-top: 20px;
 }
