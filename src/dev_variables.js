@@ -2,7 +2,7 @@ import not_found from './lottie/not_found.json'
 import logo from './assets/logo.webp'
 
 export const DARK_MODE_BTN = true
-export const REACT_APP_BACKEND_URL = process.env.NODE_ENV === 'development' ? 'http://127.0.0.1:6510' : "https://jon-dykstra-backend-63913e3e1d21.herokuapp.com/"
+export const REACT_APP_BACKEND_URL = process.env.NODE_ENV === 'development' ? 'http://127.0.0.1:6510' : "https://jon-dykstra-backend-63913e3e1d21.herokuapp.com"
 export const defaultOptions = {
     loop: true,
     autoplay: true,
