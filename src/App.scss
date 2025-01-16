@@ -16,7 +16,7 @@ tbody, th, tr, td {
     --bs-table-bg: $tbl-bg !important
 }
 table{
-    box-shadow: 10px 10px 15px #898989, -1px -1px 5px #ffffff;
+    box-shadow: $list-box-shadow;
 
     tbody{
         a{

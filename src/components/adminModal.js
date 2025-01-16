@@ -37,17 +37,33 @@ export function AdminModal({ show, handleShow, adminInfo, toast, onSuccess }){
     const addAdmin = async() => {
         let headers = new Headers();
 
-        headers.append('Content-Type', 'application/json');
+        // headers.append('Content-Type', 'application/json');
         headers.append('Accept', 'application/json');
-        var url = adminInfo.id && adminInfo.id.length > 0 ? `${REACT_APP_BACKEND_URL}/update/admin` : `${REACT_APP_BACKEND_URL}/add/admin`
-        const payload = adminInfo.id && adminInfo.id.length > 0 ? {...modalInfo, id: adminInfo.id} : modalInfo
-        const req = await fetch(url, {
-            method: 'POST',
-            body: JSON.stringify(payload),
-            headers
-        })
-        toast.success(`Admin ${adminInfo.id && adminInfo.id.length > 0 ? 'updated' : 'added'} successfully!`)
-        onSuccess()
+        try {
+            const formData = new FormData();
+            Object.keys(modalInfo).forEach(key => {
+                formData.append(`${key}`, modalInfo[key]);
+            })
+            var url = adminInfo?.id && adminInfo?.id?.length > 0 ? `${REACT_APP_BACKEND_URL}/update/admin` : `${REACT_APP_BACKEND_URL}/add/admin`
+
+            const req = await fetch(url, {
+                method: 'POST',
+                body: formData,
+                headers
+            })
+            const {status, data} = await req.json()
+            if (status) {
+                if (show) {
+                    toast.success(`Admin ${adminInfo?.id && adminInfo?.id.length > 0 ? 'updated' : 'added'} successfully!`)
+                }
+                onSuccess()            
+            }else{
+                throw new Error(data);
+                
+            }
+        } catch (error) {
+            toast.error(error)
+        }
         setIsLoading(false)
     }
 
@@ -161,7 +177,7 @@ export function AdminModal({ show, handleShow, adminInfo, toast, onSuccess }){
                             Close
                         </Button>
                         <Button type='submit' disabled={isLoading} variant="success">
-                            {adminInfo.id ? 'Update' : 'Add'} Admin
+                            {adminInfo?.id ? 'Update' : 'Add'} Admin
                         </Button>
                     </Modal.Footer>
                 </Form>

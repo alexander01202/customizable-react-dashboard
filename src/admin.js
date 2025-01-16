@@ -34,7 +34,7 @@ export default function Admin() {
   const [selectedAllDomains, setSelectedAllDomains] = useState(false);
 
   useEffect(() => {
-    for (let i = 0; i < admins.length; i++) {
+    for (let i = 0; i < admins?.length; i++) {
       setActiveIndex((prev) => ({
         ...prev,
         [i]: activeIndex?.i ? activeIndex.i : false,
@@ -52,10 +52,10 @@ export default function Admin() {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
       });
-      const { status, result } = await req.json();
+      const { status, data } = await req.json();
 
       if (status) {
-        setAdmins(result);
+        setAdmins(data);
       } else {
         toast.error("An error occurred.");
       }
@@ -272,7 +272,7 @@ export default function Admin() {
                   />
                 </td>
               </tr>
-            ) : admins.length > 0 ? (
+            ) : admins?.length > 0 ? (
               admins.map((item, index) => (
                 <tr className="table_row urlsPage">
                   <td>

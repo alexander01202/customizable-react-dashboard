@@ -30,15 +30,10 @@ function App() {
     DEVELOPMENT_PHASE ? MAIN_PAGE_FAKE_DATA : []
   );
   const [modalInfo, setModalInfo] = useState({
-    show: false,
-    subdomain: "",
-    location: "",
-    error: "",
+    show: false
   });
   const [deleteModal, setDeleteModal] = useState({
-    show: false,
-    subdomain: null,
-    subdomain_id: null,
+    show: false
   });
   const [deleteManyModal, setDeleteManyModal] = useState({
     show: false,
@@ -46,19 +41,14 @@ function App() {
   });
   const [refreshData, setRefreshData] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
-  const [editSubdomainInfo, setEditSubdomainInfo] = useState({
-    subdomain_id: "",
-    location: "",
-    subdomain_type: "",
-    subdomain: "",
-  });
+  const [editSubdomainInfo, setEditSubdomainInfo] = useState({});
   const [selectedAllDomains, setSelectedAllDomains] = useState(false);
 
   function sleep(time) {
     return new Promise((resolve) => setTimeout(resolve, time));
   }
   useEffect(() => {
-    for (let i = 0; i < data.length; i++) {
+    for (let i = 0; i < data?.length; i++) {
       setActiveIndex((prev) => ({
         ...prev,
         [i]: activeIndex?.i ? activeIndex.i : false,
@@ -70,7 +60,11 @@ function App() {
     setIsLoading(true);
     const getData = async () => {
       try {
-        await sleep(500);
+        const req  = await fetch(REACT_APP_BACKEND_URL + "/csvArticles")
+        const {status, data} = await req.json()
+        if (status) {
+          setData(data)
+        }
         setIsLoading(false);
       } catch (error) {
         toast.error(error);
@@ -126,6 +120,7 @@ function App() {
   };
 
   const handleShow = () => {
+    console.log("changing modal show...")
     setModalInfo((prev) => ({
       ...prev,
       show: !modalInfo.show,
@@ -322,8 +317,8 @@ function App() {
         <Table striped hover>
           <thead>
             <tr>
-              {MAIN_PAGE_DASHBOARD_HEADERS.map((header) => (
-                <th>{header}</th>
+              {MAIN_PAGE_DASHBOARD_HEADERS.map((header, i) => (
+                <th key={i}>{header}</th>
               ))}
             </tr>
           </thead>
@@ -342,21 +337,27 @@ function App() {
                   />
                 </td>
               </tr>
-            ) : data.length > 0 ? (
+            ) : data?.length > 0 ? (
               data.map((item, index) => (
-                <tr className="table_row urlsPage">
+                <tr key={index} className="table_row urlsPage">
                   <td>
                     <Link style={{ textTransform: "capitalize" }}>
                       {item["title"]}
                     </Link>
                   </td>
                   <td>
-                    <Link style={{ textTransform: "capitalize" }}>
+                    <Link className="ellipsis" to={item["csv_url"]} style={{ color: "blue", textDecoration:"underline" }}>
+                      {item["csv_url"]}
+                    </Link>
+                  </td>
+                  <td>
+                    <Link className="ellipsis">
                       {item["additional_prompt"]}
                     </Link>
                   </td>
                   <td>
                     <Form.Switch
+                      defaultChecked={item["chart_enabled"]}
                       readOnly
                       type="switch"
                       id="disabled-custom-switch"
@@ -366,6 +367,7 @@ function App() {
                   <td>
                     <Form.Switch
                       readOnly
+                      defaultChecked={item["map_enabled"]}
                       type="switch"
                       id="disabled-custom-switch"
                       checked={item["map_enabled"]}

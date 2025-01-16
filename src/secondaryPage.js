@@ -13,7 +13,7 @@ import { useLoaderData, Link, useParams } from "react-router-dom";
 import Lottie from "react-lottie";
 import "./css/searchEngineUrls.css";
 import { Blocks, BallTriangle } from "react-loader-spinner";
-import SearchEngineUrlModal from "./components/searchEngineUrlModal";
+import SecondaryPageModal from "./components/secondaryPageModal";
 import { ToastContainer, toast } from "react-toastify";
 import CenteredModal from "./components/centeredModal";
 import { FaExternalLinkAlt } from "react-icons/fa";
@@ -27,11 +27,9 @@ export default function SecondaryPage() {
     DEVELOPMENT_PHASE ? SECONDARY_PAGE_FAKE_DATA : []
   );
   const [modalInfo, setModalInfo] = useState({
-    show: false,
-    beginScrape: true,
-    urlInfo: {},
+    show: false
   });
-  const [refreshUrls, setRefreshUrls] = useState(false);
+  const [refreshData, setRefreshData] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [deleteModal, setDeleteModal] = useState({
     show: false,
@@ -49,14 +47,18 @@ export default function SecondaryPage() {
     setIsLoading(true);
     const getData = async () => {
       try {
-        await sleep(500);
+        const req  = await fetch(REACT_APP_BACKEND_URL + "/imageArticles")
+        const {status, data} = await req.json()
+        if (status) {
+          setData(data)
+        }
         setIsLoading(false);
       } catch (error) {
         toast.error(error);
       }
     };
     getData();
-  }, []);
+  }, [refreshData]);
 
   const handleShow = () => {
     setModalInfo((prev) => ({
@@ -65,29 +67,8 @@ export default function SecondaryPage() {
     }));
   };
 
-  const refreshPage = () => {
-    setRefreshUrls(!refreshUrls);
-  };
-
-  const handleWebSocketMessage = (documentId, message) => {
-    const update = JSON.parse(message.data);
-    // console.log("WEBSOCKET UPDATE ==> ", update)
-  };
-
-  const onUrlSuccess = async (operation, result) => {
-    setRefreshUrls(!refreshUrls);
-    if (operation === "edit") {
-      return;
-    }
-    // Create a WebSocket connection for the new document
-    const scheme = REACT_APP_BACKEND_URL.startsWith("https") ? "wss" : "ws";
-    const url = `${scheme}//${REACT_APP_BACKEND_URL.replace(
-      "https://",
-      ""
-    ).replace("http://", "")}/watch/collection/urls/${result}`;
-    const ws = new WebSocket(url);
-    ws.onmessage = (message) => handleWebSocketMessage(result, message);
-    wsConnections.current[result] = ws;
+  const onUrlSuccess = async () => {
+    setRefreshData(!refreshData);
   };
 
   const deleteSearchEngineUrl = async () => {
@@ -101,7 +82,6 @@ export default function SecondaryPage() {
     if (status) {
       handleDeleteModal();
       toast.success("URL deleted successfully.");
-      setRefreshUrls(!refreshUrls);
     } else {
       toast.error(result);
     }
@@ -118,54 +98,12 @@ export default function SecondaryPage() {
 
   return (
     <>
-      {/* <CenteredModal
-      show={deleteModal.show}
-      onSuccess={deleteSearchEngineUrl}
-      onHide={handleDeleteModal}
-      header={`Delete Search Engine URL?`}
-      body={`Are you sure you want to delete <strong>${deleteModal.search_engine_url}</strong>? <br />.`}
-      successText='Yes, Delete.'
-    /> */}
-
-      <SearchEngineUrlModal
+      <SecondaryPageModal
         onSuccess={onUrlSuccess}
-        urlDetails={modalInfo.urlInfo}
-        subdomain_type={type}
-        subdomain_id={subdomain_id}
         toast={toast}
         handleShow={handleShow}
         show={modalInfo.show}
       />
-
-      {/* <Stack
-        gap={2}
-        className="my-3 flex-column flex-sm-row"
-        direction="horizontal"
-      >
-        <Stack
-          className="justify-content-between"
-          gap={2}
-          direction="horizontal"
-        >
-          <Button
-            onClick={() =>
-              setModalInfo({ show: true, beginScrape: true, urlInfo: {} })
-            }
-            className="edit-btn"
-            size="md"
-            variant={`p-2 btn-${DARK_MODE_BTN ? "dark" : "light"}`}
-          >
-            {SECONDARY_PAGE_MODAL_TITLE}
-          </Button>
-          <Button
-            className="delete-btn"
-            size="md"
-            variant="p-2 btn-danger primary"
-          >
-            Delete
-          </Button>
-        </Stack>
-      </Stack> */}
 
       <Stack
         gap={2}
@@ -195,13 +133,13 @@ export default function SecondaryPage() {
             Delete
           </Button>
         </Stack>
-<Stack className="d-none d-md-block">
+        <Stack className="d-none d-md-block">
 
-</Stack>
+        </Stack>
 
-<Stack className="d-none d-md-block">
-  
-</Stack>
+        <Stack className="d-none d-md-block">
+          
+        </Stack>
 
         <Stack>
           <div className="d-none d-md-block">
@@ -238,8 +176,8 @@ export default function SecondaryPage() {
           <thead>
             <tr>
               <th>#</th>
-              {SECONDARY_PAGE_DASHBOARD_HEADERS.map((header) => (
-                <th>{header}</th>
+              {SECONDARY_PAGE_DASHBOARD_HEADERS.map((header, index) => (
+                <th key={index}>{header}</th>
               ))}
             </tr>
           </thead>
@@ -260,18 +198,30 @@ export default function SecondaryPage() {
               </tr>
             ) : data && data.length > 0 ? (
               data.map((item, index) => (
-                <tr className="table_row urlsPage">
+                <tr key={index} className="table_row urlsPage">
                   <td>{index + 1}</td>
                   <td>
                     <Link className="me-2">{item["title"]}</Link>
                   </td>
                   <td>
                     <div className="d-flex align-items-center justify-content-left">
-                      <Link className="me-2 ellipsis">{item["url"]}</Link>
+                      <Link className="me-2 ellipsis">{item["scrapped_webpage_url"]}</Link>
                       <a
                         target="_blank"
                         rel="noopener noreferrer"
-                        href={`${item["url"]}`}
+                        href={`${item["scrapped_webpage_url"]}`}
+                      >
+                        <FaExternalLinkAlt color="blue" pointerEvents={"all"} />
+                      </a>
+                    </div>
+                  </td>
+                  <td>
+                    <div className="d-flex align-items-center justify-content-left">
+                      <Link className="me-2 ellipsis">{item["wordpress_article_url"]}</Link>
+                      <a
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        href={`${item["wordpress_article_url"]}`}
                       >
                         <FaExternalLinkAlt color="blue" pointerEvents={"all"} />
                       </a>

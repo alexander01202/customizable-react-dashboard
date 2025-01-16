@@ -15,7 +15,7 @@ tbody, th, tr, td {
 }
 
 table {
-  box-shadow: 10px 10px 15px #898989, -1px -1px 5px #ffffff;
+  box-shadow: 1px 1px 5px #898989, -1px -1px 5px #ffffff;
 }
 table tbody a {
   color: #000;
