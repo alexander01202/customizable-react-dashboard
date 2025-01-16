@@ -101,7 +101,7 @@ export default function MainPageModal({ handleShow, show, toast, onSuccess, moda
         const option = MAIN_PAGE_MODAL_INPUT_OPTIONS.find(
           (item) => item.value_reference === key
         );
-        if (option?.required === undefined && (!modalInfo[key] || modalInfo[key].length < 1)) {
+        if (option?.required === undefined && (modalInfo[key]?.length < 1)) {
           throw new Error(`Invalid ${key}`);
         }
       });
