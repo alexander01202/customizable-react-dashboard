@@ -2,7 +2,8 @@ import not_found from './lottie/not_found.json'
 import logo from './assets/logo.webp'
 
 export const DARK_MODE_BTN = true
-export const REACT_APP_BACKEND_URL = process.env.NODE_ENV === 'development' ? 'http://127.0.0.1:6510' : "https://jon-dykstra-backend-63913e3e1d21.herokuapp.com"
+export const REACT_APP_BACKEND_URL = process.env.NODE_ENV === 'development' ? 'http://127.0.0.1:8080' : "https://jon-dykstra-backend-63913e3e1d21.herokuapp.com"
+export const WEBSOCKET_URL = process.env.NODE_ENV === 'development' ? 'ws://127.0.0.1:8080' : "wss://jon-dykstra-backend-63913e3e1d21.herokuapp.com"
 export const defaultOptions = {
     loop: true,
     autoplay: true,
@@ -46,9 +47,15 @@ export const SECONDARY_PAGE_FAKE_DATA = [
   {title: "Article Title", url: "https://react-bootstrap.netlify.app/docs/forms/checks-radios/#reverse", additional_prompt: 'true'}
 ]
 export const SECONDARY_PAGE_MODAL_TITLE = "Generate new article from URL"
+
 export const SECONDARY_PAGE_MODAL_INPUT_OPTIONS = [
   {label: "Webpage URL", type: 'url', placeholder: "Enter webpage containing images", value_reference: "webpage_url"},
   {label: "Additional Prompt", type: 'textarea', placeholder: "Enter any additional prompts", value_reference: "additional_prompt", required:false},
 ]
 export const SECONDARY_PAGE_MODAL_DEFAULT_INFO = {additional_prompt: '', webpage_url: ''}
 export const SECONDARY_PAGE_MODAL_BUTTON_TEXT = "Generate article"
+
+export const IMAGE_EXTRACT_PAGE_DASHBOARD_HEADERS = ["Article Title", "Additional Prompt", "Wordpress Article"]
+export const IMAGE_EXTRACT_PAGE_MODAL_TITLE = "Add roundup articles"
+export const IMAGE_EXTRACT_PAGE_MODAL_BUTTON_TEXT = "Generate roundup article"
+export const IMAGE_EXTRACT_PAGE_MODAL_DEFAULT_INFO = [{ url: "", num_of_images: 1, isAdded: false }]
