@@ -33,6 +33,7 @@ function AppRouter() {
       element: component,
     }));
     SetChildrenPages(newPages);
+    setRouterKey(prevKey => prevKey + 1);
   }, [authId])
 
   useEffect(() => {
