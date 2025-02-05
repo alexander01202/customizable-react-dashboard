@@ -23,6 +23,7 @@ function AppRouter() {
   const authId = useSelector(state => state.auth.id);
   const [childrenPages, SetChildrenPages] = useState({})
   const [isLoading, setIsLoading] = useState(true)
+  const [routerKey, setRouterKey] = useState(0); // 🔹 Key to force re-render
   // const dispatch = useDispatch()
   // const loggedInToken = verifyAuthToken()
 
@@ -40,6 +41,7 @@ function AppRouter() {
   
   const setIsLoaded = () => {
     setIsLoading(false)
+    setRouterKey(prevKey => prevKey + 1);
   }
 
   const router = useMemo(() => {
@@ -64,7 +66,7 @@ function AppRouter() {
     ]);
   }, [isLoading, authId, childrenPages]); // Update router when these change
 
-  return <RouterProvider router={router} />;
+  return <RouterProvider router={router} key={routerKey}/>;
 }
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
