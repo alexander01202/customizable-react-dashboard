@@ -67,7 +67,7 @@ function AppRouter() {
 
 
   const router = createBrowserRouter([
-    isLoading
+    !isLoading
     ?
     {
       path: '*', element: <LoaderPage setIsLoaded={setIsLoaded} />, loader: log_in_admin
