@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useMemo } from 'react';
 import ReactDOM from 'react-dom/client';
 import './css/index.css';
 import App from './App';
@@ -42,27 +42,27 @@ function AppRouter() {
     setIsLoading(false)
   }
 
-  const router = createBrowserRouter([
-    isLoading
-    ?
-    {
-      path: '*', element: <LoaderPage setIsLoaded={setIsLoaded} />, loader: log_in_admin
-    }
-    :
-    authId
-    ? {
-        path: '/', element: <MainNavbar />,
-        children: [
-          ...childrenPages
-        ]
-      }
-    : {
-        path: '/', element: <Main />,
-        children: [
-          { path: '/', element: <Login /> }
-        ]
-      }
-  ]);
+  const router = useMemo(() => {
+    return createBrowserRouter([
+      isLoading
+        ? {
+            path: "*",
+            element: <LoaderPage setIsLoaded={setIsLoaded} />,
+            loader: log_in_admin,
+          }
+        : authId
+        ? {
+            path: "/",
+            element: <MainNavbar />,
+            children: childrenPages,
+          }
+        : {
+            path: "/",
+            element: <Main />,
+            children: [{ path: "/", element: <Login /> }],
+          },
+    ]);
+  }, [isLoading, authId, childrenPages]); // Update router when these change
 
   return <RouterProvider router={router} />;
 }
