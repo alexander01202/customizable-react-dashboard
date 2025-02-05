@@ -42,32 +42,8 @@ function AppRouter() {
     setIsLoading(false)
   }
 
-  // useEffect(() => {
-  //   const checkIfLoggedInToken = () => {
-  //     if (!loggedInToken) {
-  //       console.log('TOKEN IS EXPIRED....')
-  //       return <Navigate to='/'/>
-  //       return redirect('/')
-  //     }
-  //   }
-  //   checkIfLoggedInToken()
-  // }, [loggedInToken])
-  
-  // if (!loggedInToken) {
-  //   console.log('TOKEN IS EXPIRED....');
-  //   return <Navigate to="/" />;
-  // }
-  
-
-  
-
-  // if (!authId && loggedInToken) {
-  //   log_in_admin()
-  // }
-
-
   const router = createBrowserRouter([
-    !isLoading
+    isLoading
     ?
     {
       path: '*', element: <LoaderPage setIsLoaded={setIsLoaded} />, loader: log_in_admin

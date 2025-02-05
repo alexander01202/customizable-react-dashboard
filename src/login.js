@@ -35,7 +35,7 @@ export default function Login() {
             event.preventDefault();
             toast.success("You are being redirected!")
             await sleep(1500);
-            dispatch(authAction.login({ id:1, email:"email", username:"result.username" }))
+            dispatch(authAction.login({ id:1, email:"email", username:"username" }))
             return
         }
         event.preventDefault();
