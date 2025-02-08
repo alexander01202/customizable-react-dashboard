@@ -16,7 +16,6 @@ import Lottie from "react-lottie";
 import { Link } from "react-router-dom";
 
 export default function RoundupArticles() {
-  const [urlsAndImages, setUrlsAndImages] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [refreshData, setRefreshData] = useState(false)
   const [data, setData] = useState([])
