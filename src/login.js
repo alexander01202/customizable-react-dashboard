@@ -31,13 +31,13 @@ export default function Login() {
     }
 
     const loginAdmin = async(event) => {
-        if (DEVELOPMENT_PHASE) {
-            event.preventDefault();
-            toast.success("You are being redirected!")
-            await sleep(1500);
-            dispatch(authAction.login({ id:1, email:"email", username:"username" }))
-            return
-        }
+        // if (DEVELOPMENT_PHASE) {
+        //     event.preventDefault();
+        //     toast.success("You are being redirected!")
+        //     await sleep(1500);
+        //     dispatch(authAction.login({ id:1, email:"email", username:"username" }))
+        //     return
+        // }
         event.preventDefault();
         if (!email || !password) {
             toast.error("Invalid Password or email")
@@ -51,24 +51,25 @@ export default function Login() {
                 'Content-Type':'application/json'
             }
         })
-        const {status, result, token} = await req.json()
+        const response = await req.json()
+        const {status, message} = response
         if (!status){
             setIsLoading(false)
-            toast.error(result)
+            toast.error(message)
             return
         }
-        if (status && result._id) {
+        if (status) {
+            const {token, data} = response
             // update redux state
             toast.success("You are being redirected!")
             await sleep(1500);
-            var id = result._id
             localStorage.removeItem('token')
             localStorage.removeItem('token_expiration')
             localStorage.setItem('token', token)
             const expiration = new Date()
             expiration.setHours(expiration.getHours() + 1)
             localStorage.setItem('token_expiration', expiration.toISOString())
-            dispatch(authAction.login({ id:id, email:email, username:result.username }))
+            dispatch(authAction.login({ id:data?.userid, email:email, username:data?.username }))
             // return redirect('/dashboard')
         }
     }
