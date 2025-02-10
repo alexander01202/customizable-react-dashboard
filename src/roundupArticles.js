@@ -148,7 +148,7 @@ export default function RoundupArticles() {
                   </td>
                   <td>
                     <div className="d-flex align-items-center justify-content-left">
-                      <Link className="me-2 ellipsis">{item["wordpress_article_url"]}</Link>
+                      <Link className="me-2 ellipsis" style={{ color: "blue", textDecoration: "underline" }}>{item["wordpress_article_url"]}</Link>
                       <a
                         target="_blank"
                         rel="noopener noreferrer"
@@ -157,15 +157,6 @@ export default function RoundupArticles() {
                         <FaExternalLinkAlt color="blue" pointerEvents={"all"} />
                       </a>
                     </div>
-                  </td>
-                  <td>
-                    <Link
-                      className="ellipsis"
-                      to={item.url}
-                      style={{ color: "blue", textDecoration: "underline" }}
-                    >
-                      {item.wordpress_article_url}
-                    </Link>
                   </td>
                 </tr>
               ))
