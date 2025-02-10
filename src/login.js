@@ -31,13 +31,13 @@ export default function Login() {
     }
 
     const loginAdmin = async(event) => {
-        if (DEVELOPMENT_PHASE) {
-            event.preventDefault();
-            toast.success("You are being redirected!")
-            await sleep(1500);
-            dispatch(authAction.login({ id:1, email:"email", username:"username" }))
-            return
-        }
+        // if (DEVELOPMENT_PHASE) {
+        //     event.preventDefault();
+        //     toast.success("You are being redirected!")
+        //     await sleep(1500);
+        //     dispatch(authAction.login({ id:1, email:"email", username:"username" }))
+        //     return
+        // }
         event.preventDefault();
         if (!email || !password) {
             toast.error("Invalid Password or email")
