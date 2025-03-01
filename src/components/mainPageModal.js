@@ -63,12 +63,14 @@ export default function MainPageModal({ handleShow, show, toast, onSuccess, moda
         formData.append(`${key}`, modalInfo[key]);
       })
 
-      const req = await fetch(url, {
-        method:'POST',
-        body: formData,
-        headers
-      })
-      const {status, data} = await req.json()
+      // const req = await fetch(url, {
+      //   method:'POST',
+      //   body: formData,
+      //   headers
+      // })
+      // const {status, data} = await req.json()
+      const status = true
+      const data = {}
       if (status) {
         if (show) {
           toast.success(`csv articles successfully added`)

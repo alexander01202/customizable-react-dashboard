@@ -210,7 +210,7 @@ function App() {
 
   return (
     <>
-      <CenteredModal
+      {/* <CenteredModal
         show={deleteModal.show}
         onSuccess={deleteSubdomain}
         onHide={() =>
@@ -227,7 +227,7 @@ function App() {
         header={`Delete Subdomains?`}
         body={`Are you sure you want to delete <strong>${deleteManyModal.count}</strong> subdomains? <br /> This would also delete all urls under these subdomains.`}
         successText="Yes, Delete."
-      />
+      /> */}
       <MainPageModal
         onSuccess={() => setRefreshData(!refreshData)}
         show={modalInfo.show}
