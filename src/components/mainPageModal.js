@@ -70,18 +70,10 @@ export default function MainPageModal({ handleShow, show, toast, onSuccess, moda
       })
       const {status, data} = await req.json()
       if (status) {
-        onSuccess()
         if (show) {
           toast.success(`csv articles successfully added`)
         }
-        Object.keys(MAIN_PAGE_MODAL_DEFAULT_INFO).forEach(key => {
-          setModalInfo(prev => ({
-            ...prev,
-            [key]:MAIN_PAGE_MODAL_DEFAULT_INFO[key],
-          }))
-        });
-        setIsLoading(false)
-        handleShow()
+        handleModalClose()
         return
       }
       throw new Error(data);
@@ -90,6 +82,13 @@ export default function MainPageModal({ handleShow, show, toast, onSuccess, moda
       toast.error(err)
     }
   }
+
+  const handleModalClose = () => {
+      setModalInfo(MAIN_PAGE_MODAL_DEFAULT_INFO);
+      setIsLoading(false)
+      handleShow();
+      onSuccess()
+  };
 
   const processForm = async(e) => {
     e.preventDefault()
