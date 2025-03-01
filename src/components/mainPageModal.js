@@ -72,6 +72,7 @@ export default function MainPageModal({ handleShow, show, toast, onSuccess, moda
       const status = true
       const data = {}
       if (status) {
+        onSuccess()
         if (show) {
           toast.success(`csv articles successfully added`)
         }
@@ -89,7 +90,7 @@ export default function MainPageModal({ handleShow, show, toast, onSuccess, moda
       setModalInfo(MAIN_PAGE_MODAL_DEFAULT_INFO);
       setIsLoading(false)
       handleShow();
-      onSuccess()
+      
   };
 
   const processForm = async(e) => {
