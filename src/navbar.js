@@ -67,7 +67,7 @@ export default function MainNavbar() {
                     self.findIndex((t) => t.page_name === item.page_name)
                 ).map(({ page_name, path }) => (
                   <Link
-                    to={`/${page_name.toLowerCase().replace(" ", "-")}`}
+                    to={path ? path :`/${page_name.toLowerCase().replace(" ", "-")}`}
                     className={
                       isActive([
                         `/${page_name.toLowerCase().replace(" ", "-")}`,

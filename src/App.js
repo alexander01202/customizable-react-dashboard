@@ -14,14 +14,7 @@ import {
 } from "./dev_variables";
 import Lottie from "react-lottie";
 import not_found from "./lottie/not_found.json";
-import OverlayTrigger from "react-bootstrap/OverlayTrigger";
-import Tooltip from "react-bootstrap/Tooltip";
-import { countries } from "./components/countries";
-import CenteredModal from "./components/centeredModal";
-import Skeleton from "react-loading-skeleton";
-import "react-loading-skeleton/dist/skeleton.css";
 import { ToastContainer, toast } from "react-toastify";
-import "../node_modules/react-toastify/dist/ReactToastify.css";
 import MainPageModal from "./components/mainPageModal";
 
 function App() {
@@ -351,11 +344,16 @@ function App() {
                     </Link>
                   </td>
                   <td>
+                    <Link className="ellipsis" to={item["wordpress_article_url"]} style={{ color: "blue", textDecoration:"underline" }}>
+                      {item["wordpress_article_url"]}
+                    </Link>
+                  </td>
+                  <td>
                     <Link className="ellipsis">
                       {item["additional_prompt"]}
                     </Link>
                   </td>
-                  <td>
+                  {/* <td>
                     <Form.Switch
                       defaultChecked={item["chart_enabled"]}
                       readOnly
@@ -372,7 +370,7 @@ function App() {
                       id="disabled-custom-switch"
                       checked={item["map_enabled"]}
                     />
-                  </td>
+                  </td> */}
                 </tr>
               ))
             ) : (

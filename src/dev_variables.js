@@ -2,7 +2,7 @@ import not_found from './lottie/not_found.json'
 import logo from './assets/logo.webp'
 
 export const DARK_MODE_BTN = true
-export const REACT_APP_BACKEND_URL = process.env.NODE_ENV === 'development' ? 'http://127.0.0.1:8080' : "https://jon-dykstra-backend-63913e3e1d21.herokuapp.com"
+export const REACT_APP_BACKEND_URL = process.env.NODE_ENV === 'development' ? 'https://jon-dykstra-backend-63913e3e1d21.herokuapp.com' : "https://jon-dykstra-backend-63913e3e1d21.herokuapp.com"
 export const WEBSOCKET_URL = process.env.NODE_ENV === 'development' ? 'ws://127.0.0.1:8080' : "wss://jon-dykstra-backend-63913e3e1d21.herokuapp.com"
 export const defaultOptions = {
     loop: true,
@@ -19,7 +19,7 @@ export const SIDE_NAVBAR_PAGES_NAME = ["CSV Articles", "Image Articles"]
 export const LOGO_PATH = logo
 
 // MAIN PAGE CUSTOMIZATIONS
-export const MAIN_PAGE_DASHBOARD_HEADERS = ["Article Title", "Csv URL", "Additional Prompt", "Price Chart Enabled", "Maps Enabled"]
+export const MAIN_PAGE_DASHBOARD_HEADERS = ["Article Title", "Csv URL", "Wordpress Article", "Additional Prompt"]
 export const MAIN_PAGE_FAKE_DATA = [
   {title: "Article Title", additional_prompt: '', chart_enabled: true, map_enabled: false},
   {title: "Article Title", additional_prompt: '', chart_enabled: false, map_enabled: false},
@@ -30,8 +30,8 @@ export const MAIN_PAGE_MODAL_TITLE = "Generate new article based on CSV"
 export const MAIN_PAGE_MODAL_INPUT_OPTIONS = [
   {label: "Article Title", type: 'text', placeholder: "Enter article title", value_reference: "article_title"},
   {label: "CSV File", type: 'file', placeholder: "Upload CSV", value_reference: "csv_file", accept:".csv"},
-  {label: "Enable Price Chart", type: 'switch', value_reference: "chart_enabled"},
-  {label: "Enable Maps", type: 'switch', value_reference: "map_enabled"},
+  // {label: "Enable Price Chart", type: 'switch', value_reference: "chart_enabled"},
+  // {label: "Enable Maps", type: 'switch', value_reference: "map_enabled"},
   {label: "Additional Prompt", type: 'textarea', placeholder: "Enter any additional prompts", value_reference: "additional_prompt", required:false},
 ]
 export const MAIN_PAGE_MODAL_DEFAULT_INFO = {article_title: '', additional_prompt:'', csv_file: '', chart_enabled: false, map_enabled: false}
