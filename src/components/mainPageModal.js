@@ -3,11 +3,8 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { useEffect, useState } from 'react';
 import Modal from 'react-bootstrap/Modal';
-import Dropdown from 'react-bootstrap/Dropdown';
-import DropdownButton from 'react-bootstrap/DropdownButton';
 import { REACT_APP_BACKEND_URL, MAIN_PAGE_MODAL_DEFAULT_INFO, MAIN_PAGE_MODAL_INPUT_OPTIONS, MAIN_PAGE_MODAL_TITLE, MAIN_PAGE_MODAL_BUTTON_TEXT } from '../dev_variables';
-import { countries } from './countries';
-import { CustomMenu, CustomToggle } from './customDropdown';
+
 
 export default function MainPageModal({ handleShow, show, toast, onSuccess, modalInfoParam }) {
   const [modalInfo, setModalInfo] = useState(MAIN_PAGE_MODAL_DEFAULT_INFO)
@@ -63,16 +60,13 @@ export default function MainPageModal({ handleShow, show, toast, onSuccess, moda
         formData.append(`${key}`, modalInfo[key]);
       })
 
-      // const req = await fetch(url, {
-      //   method:'POST',
-      //   body: formData,
-      //   headers
-      // })
-      // const {status, data} = await req.json()
-      const status = true
-      const data = {}
+      const req = await fetch(url, {
+        method:'POST',
+        body: formData,
+        headers
+      })
+      const {status, data} = await req.json()
       if (status) {
-        onSuccess()
         if (show) {
           toast.success(`csv articles successfully added`)
         }
@@ -90,7 +84,7 @@ export default function MainPageModal({ handleShow, show, toast, onSuccess, moda
       setModalInfo(MAIN_PAGE_MODAL_DEFAULT_INFO);
       setIsLoading(false)
       handleShow();
-      
+      onSuccess()
   };
 
   const processForm = async(e) => {
@@ -116,12 +110,12 @@ export default function MainPageModal({ handleShow, show, toast, onSuccess, moda
 
  
   return (
-    <Modal show={show} onHide={handleShow}>
+    <Modal show={show}>
         <Modal.Header closeButton>
           <Modal.Title>{MAIN_PAGE_MODAL_TITLE}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <Form onSubmit={processForm} encType='multipart/form-data'>
+          <Form onSubmit={processForm}>
             {
               MAIN_PAGE_MODAL_INPUT_OPTIONS.map((options, i) => (
                 <Form.Group className="mb-3" key={i}>
