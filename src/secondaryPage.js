@@ -263,7 +263,7 @@ export default function SecondaryPage() {
             ) : (
               <tr>
                 <td colSpan={"6"}>
-                  <h1 className="my-2 empty-records">
+                  <h1 style={{ color:"#000" }} className="my-2 empty-records">
                     <b>No Image Articles Found</b>
                   </h1>
                   <Lottie

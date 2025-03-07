@@ -164,7 +164,7 @@ export default function RoundupArticles() {
               <tr>
                 <td colSpan={"6"}>
                   <h1 className="my-2 empty-records">
-                    <b>No Round Up Articles Found</b>
+                    <b style={{ color:"#000" }}>No Round Up Articles Found</b>
                   </h1>
                   <Lottie
                     options={defaultOptions}
