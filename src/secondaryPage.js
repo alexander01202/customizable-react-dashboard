@@ -44,20 +44,20 @@ export default function SecondaryPage() {
   }
 
   useEffect(() => {
-    setIsLoading(true);
-    const getData = async () => {
-      try {
-        const req  = await fetch(REACT_APP_BACKEND_URL + "/imageArticles")
-        const {status, data} = await req.json()
-        if (status) {
-          setData(data)
-        }
-        setIsLoading(false);
-      } catch (error) {
-        toast.error(error);
-      }
-    };
-    getData();
+    setIsLoading(false);
+    // const getData = async () => {
+    //   try {
+    //     const req  = await fetch(REACT_APP_BACKEND_URL + "/imageArticles")
+    //     const {status, data} = await req.json()
+    //     if (status) {
+    //       setData(data)
+    //     }
+    //     setIsLoading(false);
+    //   } catch (error) {
+    //     toast.error(error);
+    //   }
+    // };
+    // getData();
   }, [refreshData]);
 
   const handleShow = () => {
@@ -98,19 +98,19 @@ export default function SecondaryPage() {
 
   return (
     <>
-      <SecondaryPageModal
+      {/* <SecondaryPageModal
         onSuccess={onUrlSuccess}
         toast={toast}
         handleShow={handleShow}
         show={modalInfo.show}
-      />
+      /> */}
 
       <Stack
         gap={2}
         className="my-3 flex-column flex-sm-row jusity-content-between"
         direction="horizontal"
       >
-        <Stack
+        {/* <Stack
           className="justify-content-between"
           gap={1}
           direction="horizontal"
@@ -132,7 +132,7 @@ export default function SecondaryPage() {
           >
             Delete
           </Button>
-        </Stack>
+        </Stack> */}
         <Stack className="d-none d-md-block">
 
         </Stack>
@@ -200,50 +200,13 @@ export default function SecondaryPage() {
               data.map((item, index) => (
                 <tr key={index} className="table_row urlsPage">
                   <td>{index + 1}</td>
-                  <td>
-                    <Link className="me-2">{item["title"]}</Link>
+                  <td className="ellipsis">
+                    {item["error"]}
                   </td>
                   <td>
-                    <div className="d-flex align-items-center justify-content-left">
-                      <Link className="me-2 ellipsis">{item["scrapped_webpage_url"]}</Link>
-                      <a
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        href={`${item["scrapped_webpage_url"]}`}
-                      >
-                        <FaExternalLinkAlt color="blue" pointerEvents={"all"} />
-                      </a>
-                    </div>
-                  </td>
-                  <td>
-                    <div className="d-flex align-items-center justify-content-left">
-                      <Link className="me-2 ellipsis">{item["wordpress_article_url"]}</Link>
-                      <a
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        href={`${item["wordpress_article_url"]}`}
-                      >
-                        <FaExternalLinkAlt color="blue" pointerEvents={"all"} />
-                      </a>
-                    </div>
-                  </td>
-                  <td>
-                    <Link className="me-2">{item["additional_prompt"]}</Link>
+                    {item["date"]}
                   </td>
                   <td className="gap-2">
-                    <Button
-                      className="edit-btn mx-2"
-                      variant="p-2 btn-outline-dark"
-                      onClick={() =>
-                        setModalInfo({
-                          show: true,
-                          beginScrape: true,
-                          urlInfo: item,
-                        })
-                      }
-                    >
-                      EDIT
-                    </Button>
                     <Button
                       className="delete-btn mt-2 mt-md-0"
                       variant="p-2 btn-danger"
