@@ -1,5 +1,5 @@
 import "./css/App.css";
-import { Stack, Button, Form, Table, Container } from "react-bootstrap";
+import { Stack, Button, Form, Table, ProgressBar } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { Blocks, BallTriangle } from "react-loader-spinner";
 import "./css/App.css";
@@ -16,6 +16,8 @@ import Lottie from "react-lottie";
 import not_found from "./lottie/not_found.json";
 import { ToastContainer, toast } from "react-toastify";
 import MainPageModal from "./components/mainPageModal";
+import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
+import Tooltip from 'react-bootstrap/Tooltip';
 
 function App() {
   const [activeIndex, setActiveIndex] = useState({});
@@ -50,20 +52,20 @@ function App() {
   }, [data]);
 
   useEffect(() => {
-    setIsLoading(true);
-    const getData = async () => {
-      try {
-        const req  = await fetch(REACT_APP_BACKEND_URL + "/csvArticles")
-        const {status, data} = await req.json()
-        if (status) {
-          setData(data)
-        }
-        setIsLoading(false);
-      } catch (error) {
-        toast.error(error);
-      }
-    };
-    getData();
+    setIsLoading(false);
+    // const getData = async () => {
+    //   try {
+    //     const req  = await fetch(REACT_APP_BACKEND_URL + "/csvArticles")
+    //     const {status, data} = await req.json()
+    //     if (status) {
+    //       setData(data)
+    //     }
+    //     setIsLoading(false);
+    //   } catch (error) {
+    //     toast.error(error);
+    //   }
+    // };
+    // getData();
   }, [refreshData]);
 
   const defaultOptions = {
@@ -258,14 +260,16 @@ function App() {
             onClick={() => setModalInfo({ show: true })}
             className="edit-btn"
             size="md"
+            disabled='true'
             variant={`p-2 btn-${DARK_MODE_BTN ? "dark" : "light"}`}
           >
-            Add new CSV Article
+            Add New SEC ALERT
           </Button>
           <Button
             className="delete-btn"
             size="md"
             variant="p-2 btn-danger primary"
+            disabled='true'
           >
             Delete
           </Button>
@@ -333,44 +337,29 @@ function App() {
             ) : data?.length > 0 ? (
               data.map((item, index) => (
                 <tr key={index} className="table_row urlsPage">
+                  <td className="ellipsis">
+                    <OverlayTrigger
+                      placement='top'
+                      overlay={
+                        <Tooltip id={`tooltip-top`}>
+                          <strong>{item['title']}</strong>
+                        </Tooltip>
+                      }
+                    >
+                      <span>{item["title"]}</span>
+                    </OverlayTrigger>
+                  </td>
                   <td>
-                    <Link style={{ textTransform: "capitalize" }}>
-                      {item["title"]}
+                    <Link className="ellipsis" to={item["source"]} target="_blank" style={{ color: "blue", textDecoration:"underline" }}>
+                      {item["source"]}
                     </Link>
                   </td>
-                  <td>
-                    <Link className="ellipsis" to={item["csv_url"]} style={{ color: "blue", textDecoration:"underline" }}>
-                      {item["csv_url"]}
-                    </Link>
+                  <td style={{ alignContent:'center', textTransform:'capitalize' }}>
+                    {item['type']}
                   </td>
                   <td>
-                    <Link className="ellipsis" to={item["wordpress_article_url"]} style={{ color: "blue", textDecoration:"underline" }}>
-                      {item["wordpress_article_url"]}
-                    </Link>
+                    {item['published']}
                   </td>
-                  <td>
-                    <Link className="ellipsis">
-                      {item["additional_prompt"]}
-                    </Link>
-                  </td>
-                  {/* <td>
-                    <Form.Switch
-                      defaultChecked={item["chart_enabled"]}
-                      readOnly
-                      type="switch"
-                      id="disabled-custom-switch"
-                      checked={item["chart_enabled"]}
-                    />
-                  </td>
-                  <td>
-                    <Form.Switch
-                      readOnly
-                      defaultChecked={item["map_enabled"]}
-                      type="switch"
-                      id="disabled-custom-switch"
-                      checked={item["map_enabled"]}
-                    />
-                  </td> */}
                 </tr>
               ))
             ) : (
