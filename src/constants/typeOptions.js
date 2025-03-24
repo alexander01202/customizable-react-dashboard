@@ -1,0 +1,23 @@
+// src/constants/typeOptions.js
+export const TYPE_OPTIONS = [
+    { value: '', label: 'All Types' },
+    { value: 'press_releases', label: 'Press Releases' },
+    { value: 'speeches_statements', label: 'Speeches And Statements' },
+    { value: 'meetings_events', label: 'Meetings & Events' },
+    { value: 'past_meetings_events', label: 'Past Meetings & Events' },
+    { value: 'sec_videos', label: 'Sec Videos' },
+    { value: 'social_media', label: 'Social Media' },
+    { value: 'whats_new', label: "What's New" },
+    { value: 'policy_statements', label: 'Policy Statements' },
+    { value: 'data_research', label: 'Data & Research' },
+    { value: 'risk_alerts', label: 'Risk Alerts' },
+    { value: 'rulemaking_activity', label: 'Rulemaking Activity' },
+    { value: 'staff_accounting_bulletins', label: 'Staff Accounting Bulletins' },
+    { value: 'staff_legal_bulletins', label: 'Staff Legal Bulletins' },
+    { value: 'investment_mgmt_faq', label: 'Division Of Investment Management: Frequently Asked Questions' },
+    { value: 'exchange_act_notices_orders', label: 'Exchange Act Exemptive Notices And Orders' },
+    { value: 'investment_company_deregistration', label: 'Investment Company Act Deregistration Notices And Orders' },
+    { value: 'investment_company_notices_orders', label: 'Investment Companies Act Notices And Orders' },
+    { value: 'other_commission_orders', label: 'Other Commission Orders Notices And Information' },
+    { value: 'petitions_rulemaking', label: 'Petitions For Rulemaking' },
+  ];
