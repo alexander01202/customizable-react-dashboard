@@ -13,25 +13,23 @@ export const defaultOptions = {
     }
 };
 
-export const OWNER_NAME = "Jon Dysktra"
+export const OWNER_NAME = "James Nicholls"
 export const DEVELOPMENT_PHASE = true
-export const SIDE_NAVBAR_PAGES_NAME = ["CSV Articles", "Image Articles"]
+export const SIDE_NAVBAR_PAGES_NAME = ["SEC Alerts"]
 export const LOGO_PATH = logo
 
 // MAIN PAGE CUSTOMIZATIONS
-export const MAIN_PAGE_DASHBOARD_HEADERS = ["Article Title", "Csv URL", "Wordpress Article", "Additional Prompt"]
+export const MAIN_PAGE_DASHBOARD_HEADERS = ["Title", "Source", "Type", "Published"]
 export const MAIN_PAGE_FAKE_DATA = [
-  {title: "Article Title", additional_prompt: '', chart_enabled: true, map_enabled: false},
-  {title: "Article Title", additional_prompt: '', chart_enabled: false, map_enabled: false},
-  {title: "Article Title", additional_prompt: '', chart_enabled: false, map_enabled: true},
-  {title: "Article Title", additional_prompt: '', chart_enabled: true, map_enabled: true}
+  {title: "Eurex Clearing Readiness Newsflash | Limitations regarding securities collateral provided via title transfer: Implementation postponed to 1 May 2025", source: 'https://www.eurex.com', type: 'circular', published: '2025-03-21'},
+  {title: "Litigation Release - Theodore J. Farnsworth, J. Mitchell Lowe, and Khalid Itum", source: 'https://www.sec.gov', type: 'News', published: '2025-01-02T15:34:15Z'},
+  {title: "Remarks to the 2025 Annual Washington Conference of the Institute of International Bankers", source: 'https://www.sec.gov', type: 'Speech', published: '2025-03-10T12:50:59Z'},
+  {title: "Office Hours with Gary Gensler: The U.S. Capital Markets and the Securities and Exchange Commission", source: 'https://www.sec.gov', type: 'News', published: '2025-01-16T16:45:16Z'},
 ]
-export const MAIN_PAGE_MODAL_TITLE = "Generate new article based on CSV"
+export const MAIN_PAGE_MODAL_TITLE = "Add new URL"
 export const MAIN_PAGE_MODAL_INPUT_OPTIONS = [
   {label: "Article Title", type: 'text', placeholder: "Enter article title", value_reference: "article_title"},
   {label: "CSV File", type: 'file', placeholder: "Upload CSV", value_reference: "csv_file", accept:".csv"},
-  // {label: "Enable Price Chart", type: 'switch', value_reference: "chart_enabled"},
-  // {label: "Enable Maps", type: 'switch', value_reference: "map_enabled"},
   {label: "Additional Prompt", type: 'textarea', placeholder: "Enter any additional prompts", value_reference: "additional_prompt", required:false},
 ]
 export const MAIN_PAGE_MODAL_DEFAULT_INFO = {article_title: '', additional_prompt:'', csv_file: '', chart_enabled: false, map_enabled: false}
@@ -39,12 +37,12 @@ export const MAIN_PAGE_MODAL_BUTTON_TEXT = "Generate article"
 
 
 // SECONDARY PAGE CUSTOMIZATIONS
-export const SECONDARY_PAGE_DASHBOARD_HEADERS = ["Article Title", "Scrapped Website", "Wordpress Article", "Additional Prompt", '']
+export const SECONDARY_PAGE_DASHBOARD_HEADERS = ["Error", "Date"]
 export const SECONDARY_PAGE_FAKE_DATA = [
-  {title: "Article Title", url: "https://react-bootstrap.netlify.app/docs/forms/checks-radios/#reverse", additional_prompt: ''},
-  {title: "Article Title", url: "https://react-bootstrap.netlify.app/docs/forms/checks-radios/#reverse", additional_prompt: ''},
-  {title: "Article Title", url: "https://react-bootstrap.netlify.app/docs/forms/checks-radios/#reverse", additional_prompt: 'false'},
-  {title: "Article Title", url: "https://react-bootstrap.netlify.app/docs/forms/checks-radios/#reverse", additional_prompt: 'true'}
+  {error: "Article Title", date: '2025-10-12'},
+  {error: "Article Title", date: '2025-10-12'},
+  {error: "Article Title", date: '2025-10-12'},
+  {error: "Article Title", date: '2025-10-12'}
 ]
 export const SECONDARY_PAGE_MODAL_TITLE = "Generate new article from URL"
 
