@@ -1,5 +1,5 @@
 import not_found from './lottie/not_found.json'
-import logo from './assets/logo.webp'
+import logo from './assets/logo.png'
 
 export const DARK_MODE_BTN = true
 export const REACT_APP_BACKEND_URL = process.env.NODE_ENV === 'development' ? 'https://jon-dykstra-backend-63913e3e1d21.herokuapp.com' : "https://jon-dykstra-backend-63913e3e1d21.herokuapp.com"

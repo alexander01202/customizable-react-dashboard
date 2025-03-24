@@ -3,7 +3,6 @@ import { Link, useLocation } from "react-router-dom";
 import Container from "react-bootstrap/Container";
 import Stack from "react-bootstrap/Stack";
 import { Outlet } from "react-router-dom";
-import { TbWorldPin } from "react-icons/tb";
 import Image from "react-bootstrap/Image";
 import Background from "./components/background";
 import "./css/navbar.css";
@@ -65,7 +64,7 @@ export default function MainNavbar() {
                   (item, index, self) =>
                     index ===
                     self.findIndex((t) => t.page_name === item.page_name)
-                ).map(({ page_name, path }) => (
+                ).map(({ page_name, path, icon }) => (
                   <Link
                     to={path ? path :`/${page_name.toLowerCase().replace(" ", "-")}`}
                     className={
@@ -77,7 +76,7 @@ export default function MainNavbar() {
                     key={page_name}
                   >
                     <span className="icon">
-                      <TbWorldPin />
+                      {icon}
                     </span>
                     <span className="title">{page_name}</span>
                   </Link>
@@ -154,7 +153,7 @@ export default function MainNavbar() {
                   (item, index, self) =>
                     index ===
                     self.findIndex((t) => t.page_name === item.page_name)
-                ).map(({ page_name, path }) => (
+                ).map(({ page_name, path, icon }) => (
                   <Link
                     to={`/${page_name.toLowerCase().replace(" ", "-")}`}
                     className={
@@ -167,7 +166,7 @@ export default function MainNavbar() {
                     onClick={() => setIsCollapsed(true)} // Close sidebar on selection
                   >
                     <span className="icon">
-                      <TbWorldPin />
+                      {icon}
                     </span>
                     <span className="title">{page_name}</span>
                   </Link>

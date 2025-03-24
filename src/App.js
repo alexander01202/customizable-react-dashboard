@@ -18,8 +18,95 @@ import { ToastContainer, toast } from "react-toastify";
 import MainPageModal from "./components/mainPageModal";
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import Tooltip from 'react-bootstrap/Tooltip';
+import { MdDelete, MdModeEdit } from "react-icons/md";
+
+
+
+
+const inputStyle = {
+  width: '100%',
+  padding: '10px',
+  borderRadius: '4px',
+  border: '1px solid #ccc',
+};
+
+const selectStyle = { ...inputStyle };
+
+// Dropdown options
+const regulatorOptions = [
+  { value: '', label: 'All Regulators' },
+  { value: 'sebi', label: 'Securities and Exchange Board of India' },
+  { value: 'nse', label: 'NSE' },
+  { value: 'china_sec', label: 'China Securities Regulatory Commission' },
+  { value: 'eurex', label: 'EUREX Exchange' },
+  { value: 'esma', label: 'European Securities and Markets Authority' },
+  { value: 'fca', label: 'Financial Conduct Authority' },
+  { value: 'cboe', label: 'Cboe Global Markets, Inc.' },
+  { value: 'finra', label: 'Financial Industry Regulatory Authority' },
+  { value: 'cftc', label: 'Commodity Futures Trading Commission' },
+  { value: 'sec', label: 'Securities and Exchange Commission' },
+];
+
+const typeOptions = [
+  { value: '', label: 'All Types' },
+  { value: 'press_releases', label: 'Press Releases' },
+  { value: 'speeches_statements', label: 'Speeches And Statements' },
+  { value: 'meetings_events', label: 'Meetings & Events' },
+  { value: 'past_meetings_events', label: 'Past Meetings & Events' },
+  { value: 'sec_videos', label: 'Sec Videos' },
+  { value: 'social_media', label: 'Social Media' },
+  { value: 'whats_new', label: "What's New" },
+  { value: 'policy_statements', label: 'Policy Statements' },
+  { value: 'data_research', label: 'Data & Research' },
+  { value: 'risk_alerts', label: 'Risk Alerts' },
+  { value: 'rulemaking_activity', label: 'Rulemaking Activity' },
+  { value: 'staff_accounting_bulletins', label: 'Staff Accounting Bulletins' },
+  { value: 'staff_legal_bulletins', label: 'Staff Legal Bulletins' },
+  { value: 'investment_mgmt_faq', label: 'Division Of Investment Management: Frequently Asked Questions' },
+  { value: 'exchange_act_notices_orders', label: 'Exchange Act Exemptive Notices And Orders' },
+  { value: 'investment_company_deregistration', label: 'Investment Company Act Deregistration Notices And Orders' },
+  { value: 'investment_company_notices_orders', label: 'Investment Companies Act Notices And Orders' },
+  { value: 'other_commission_orders', label: 'Other Commission Orders Notices And Information' },
+  { value: 'petitions_rulemaking', label: 'Petitions For Rulemaking' },
+];
+
+const tableHeadings = ['Title', 'Source', 'Type', 'Published', 'Action'];
+
+const TableData = Array(14).fill({
+  title: 'title',
+  source: 'source https://www.sec.gov/',
+  type: 'news',
+  published: '23-3-2025',
+}).map((item, idx) => ({
+  ...item,
+  type: idx % 2 === 0 ? 'news' : 'press release',
+}));
+
+const itemsPerPage = 10;
+
+
 
 function App() {
+
+    const [currentPage, setCurrentPage] = useState(1);
+    const totalPages = Math.ceil(TableData.length / itemsPerPage);
+  
+    const indexOfLastItem = currentPage * itemsPerPage;
+    const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+    const currentItems = TableData.slice(indexOfFirstItem, indexOfLastItem);
+  
+
+    const pagesAroundCurrent = Array.from(
+      { length: Math.min(3, totalPages) },
+      (_, i) => i + Math.max(currentPage - 1, 1)
+    );
+
+
+    const onPageChange = (page) => {
+      if (page >= 1 && page <= totalPages) {
+        setCurrentPage(page);
+      }
+    };  
   const [activeIndex, setActiveIndex] = useState({});
   const [data, setData] = useState(
     DEVELOPMENT_PHASE ? MAIN_PAGE_FAKE_DATA : []
@@ -256,86 +343,74 @@ function App() {
           gap={2}
           direction="horizontal"
         >
-          <Button
-            onClick={() => setModalInfo({ show: true })}
-            className="edit-btn"
-            size="md"
-            disabled='true'
-            variant={`p-2 btn-${DARK_MODE_BTN ? "dark" : "light"}`}
-          >
-            Add New SEC ALERT
-          </Button>
-          <Button
-            className="delete-btn"
-            size="md"
-            variant="p-2 btn-danger primary"
-            disabled='true'
-          >
-            Delete
-          </Button>
+         RegPass© Horizon Scanning
         </Stack>
         <Stack className="d-none d-md-block"></Stack>
 
         <Stack className="d-none d-md-block"></Stack>
 
-        <Stack>
-          <div className="d-none d-md-block">
-            <Form className="ms-auto d-flex ">
-              <Form.Control
-                type="search"
-                placeholder="Search"
-                className="me-2 main-input]"
-                aria-label="Search"
-              />
-              <Button variant={`${DARK_MODE_BTN ? "dark" : "light"}`}>
-                Search
-              </Button>
-            </Form>
-          </div>
+        <Stack className="d-flex flex-row justify-content-between">
+  <div className="d-none d-md-block w-100">
+    <div className="d-flex align-items-center gap-4">
+      <select name="regulators" style={selectStyle}>
+        {regulatorOptions.map((option) => (
+          <option key={option.value} value={option.value}>
+            {option.label}
+          </option>
+        ))}
+      </select>
 
-          <div className="d-block d-md-none">
-            <Form className="d-flex justify-content-center align-items-center">
-              <Form.Control
-                type="search"
-                placeholder="Search"
-                className="me-2 main-input"
-                aria-label="Search"
-                style={{ flex: "1" }} // Optional for better styling
-              />
-              <Button variant="dark" style={{ whiteSpace: "nowrap" }}>
-                Search
-              </Button>
-            </Form>
-          </div>
-        </Stack>
+      <select name="types" style={selectStyle}>
+        {typeOptions.map((option) => (
+          <option key={option.value} value={option.value}>
+            {option.label}
+          </option>
+        ))}
+      </select>
+
+      <Button variant={`${DARK_MODE_BTN ? "dark" : "light"}`}>Filter</Button>
+    </div>
+  </div>
+
+  <div className="d-block d-md-none w-100">
+  <div className="d-flex flex-column gap-2">
+      <select name="regulators" style={selectStyle}>
+        {regulatorOptions.map((option) => (
+          <option key={option.value} value={option.value}>
+            {option.label}
+          </option>
+        ))}
+      </select>
+
+      <select name="types" style={selectStyle}>
+        {typeOptions.map((option) => (
+          <option key={option.value} value={option.value}>
+            {option.label}
+          </option>
+        ))}
+      </select>
+
+      <Button variant={`${DARK_MODE_BTN ? "dark" : "light"}`}>Filter</Button>
+    </div>
+  </div>
+</Stack>
+
       </Stack>
 
       <div className="table-responsive">
         <Table striped hover>
-          <thead>
-            <tr>
-              {MAIN_PAGE_DASHBOARD_HEADERS.map((header, i) => (
-                <th key={i}>{header}</th>
-              ))}
-            </tr>
-          </thead>
+        <thead>
+  <tr>
+    {MAIN_PAGE_DASHBOARD_HEADERS.map((header, i) => (
+      <th key={i}>{header}</th>
+    ))}
+    <th>Actions</th>
+  </tr>
+</thead>
+
           <tbody>
-            {isLoading ? (
-              <tr>
-                <td colspan="6" className="text-center align-middle">
-                  <BallTriangle
-                    height="80"
-                    width="80"
-                    color="#000"
-                    ariaLabel="ball-triangle-loading"
-                    wrapperStyle={{ display: "block" }}
-                    wrapperClass="blocks-wrapper"
-                    visible={true}
-                  />
-                </td>
-              </tr>
-            ) : data?.length > 0 ? (
-              data.map((item, index) => (
+         {
+          currentItems?.map((item, index) => (
                 <tr key={index} className="table_row urlsPage">
                   <td className="ellipsis">
                     <OverlayTrigger
@@ -360,32 +435,68 @@ function App() {
                   <td>
                     {item['published']}
                   </td>
+                  <td>
+                      <div className="flex gap-6 items-center">
+                                            <MdModeEdit className="text-xl cursor-pointer" />
+                                            <MdDelete className="text-xl cursor-pointer" />
+                                          </div>
+                  </td>
                 </tr>
               ))
-            ) : (
-              <tr>
-                <td style={{ background: "transparent" }} colSpan={"6"}>
-                  <h1
-                    className="my-2"
-                    style={{
-                      textTransform: "uppercase",
-                      fontSize: "30px",
-                      textAlign: "center",
-                    }}
-                  >
-                    <b>No Data Found</b>
-                  </h1>
-                  <Lottie
-                    options={defaultOptions}
-                    height={500}
-                    width={500}
-                    isClickToPauseDisabled={true}
-                  />
-                </td>
-              </tr>
-            )}
+         }
+
+
+
+         {/* ----------------------pagination------------- */}
+
+
           </tbody>
+
         </Table>
+
+        <div className="d-flex justify-content-end align-items-center w-100">
+  <nav aria-label="Pagination">
+    <ul className="pagination flex list-none gap-2">
+      {/* Previous Button */}
+      <li className={`page-item ${currentPage === 1 ? "disabled opacity-50" : ""}`}>
+        <button
+          className="page-link px-3 py-2 border rounded-lg bg-white text-gray-700 shadow-sm hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700"
+          onClick={() => onPageChange(currentPage - 1)}
+          disabled={currentPage === 1}
+        >
+          Previous
+        </button>
+      </li>
+
+      {/* Page Numbers */}
+      {pagesAroundCurrent.map((page) => (
+        <li key={page} className={`page-item ${currentPage === page ? "active" : ""}`}>
+          <button
+            className={`page-link px-3 py-2 border rounded-lg ${
+              currentPage === page
+                ? "bg-blue-500 text-white"
+                : "bg-white text-gray-700 hover:bg-gray-100"
+            } shadow-sm dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700`}
+            onClick={() => onPageChange(page)}
+          >
+            {page}
+          </button>
+        </li>
+      ))}
+
+      {/* Next Button */}
+      <li className={`page-item ${currentPage === totalPages ? "disabled opacity-50" : ""}`}>
+        <button
+          className="page-link px-3 py-2 border rounded-lg bg-white text-gray-700 shadow-sm hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700"
+          onClick={() => onPageChange(currentPage + 1)}
+          disabled={currentPage === totalPages}
+        >
+          Next
+        </button>
+      </li>
+    </ul>
+  </nav>
+</div>    
       </div>
 
       <ToastContainer />
