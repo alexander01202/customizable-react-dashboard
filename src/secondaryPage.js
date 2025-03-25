@@ -44,20 +44,20 @@ export default function SecondaryPage() {
   }
 
   useEffect(() => {
-    setIsLoading(false);
-    // const getData = async () => {
-    //   try {
-    //     const req  = await fetch(REACT_APP_BACKEND_URL + "/imageArticles")
-    //     const {status, data} = await req.json()
-    //     if (status) {
-    //       setData(data)
-    //     }
-    //     setIsLoading(false);
-    //   } catch (error) {
-    //     toast.error(error);
-    //   }
-    // };
-    // getData();
+    setIsLoading(true);
+    const getData = async () => {
+      try {
+        const req  = await fetch(REACT_APP_BACKEND_URL + "/errors/retrieve")
+        const {status, data} = await req.json()
+        if (status) {
+          setData(data)
+        }
+        setIsLoading(false);
+      } catch (error) {
+        toast.error(error);
+      }
+    };
+    getData();
   }, [refreshData]);
 
   const handleShow = () => {
@@ -201,10 +201,16 @@ export default function SecondaryPage() {
                 <tr key={index} className="table_row urlsPage">
                   <td>{index + 1}</td>
                   <td className="ellipsis">
-                    {item["error"]}
+                    {item["error_message"]}
+                  </td>
+                  <td className="ellipsis">
+                    {item["url"]}
                   </td>
                   <td>
-                    {item["date"]}
+                    {item["source_regulator"]}
+                  </td>
+                  <td>
+                    {item["timestamp"]}
                   </td>
                   <td className="gap-2">
                     <Button

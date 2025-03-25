@@ -2,7 +2,7 @@ import not_found from './lottie/not_found.json'
 import logo from './assets/logo.png'
 
 export const DARK_MODE_BTN = true
-export const REACT_APP_BACKEND_URL = process.env.NODE_ENV === 'development' ? 'https://2252-38-131-68-33.ngrok-free.app' : "https://horizonscanning-api-dev.blackbay-917b2d07.uksouth.azurecontainerapps.io"
+export const REACT_APP_BACKEND_URL = process.env.NODE_ENV === 'development' ? 'http://127.0.0.1:8000' : "https://horizonscanning-api-dev.blackbay-917b2d07.uksouth.azurecontainerapps.io"
 export const WEBSOCKET_URL = process.env.NODE_ENV === 'development' ? 'ws://127.0.0.1:8080' : "wss://jon-dykstra-backend-63913e3e1d21.herokuapp.com"
 export const defaultOptions = {
     loop: true,
@@ -37,12 +37,12 @@ export const MAIN_PAGE_MODAL_BUTTON_TEXT = "Generate article"
 
 
 // SECONDARY PAGE CUSTOMIZATIONS
-export const SECONDARY_PAGE_DASHBOARD_HEADERS = ["Error", "Date"]
+export const SECONDARY_PAGE_DASHBOARD_HEADERS = ["Error", "URL", "Source Regulator", "Date recorded"]
 export const SECONDARY_PAGE_FAKE_DATA = [
-  {error: "Article Title", date: '2025-10-12'},
-  {error: "Article Title", date: '2025-10-12'},
-  {error: "Article Title", date: '2025-10-12'},
-  {error: "Article Title", date: '2025-10-12'}
+  {error: "Article Title", url: "", source_regulator:"", date: '2025-10-12'},
+  {error: "Article Title", url: "", source_regulator:"", date: '2025-10-12'},
+  {error: "Article Title", url: "", source_regulator:"", date: '2025-10-12'},
+  {error: "Article Title", url: "", source_regulator:"", date: '2025-10-12'}
 ]
 export const SECONDARY_PAGE_MODAL_TITLE = "Generate new article from URL"
 

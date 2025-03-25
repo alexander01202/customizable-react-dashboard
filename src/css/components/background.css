@@ -1,5 +1,5 @@
 .subdomain-list {
-  background: #ffffff;
+  background: #fff;
   border-radius: 20px;
   padding: 40px;
   backdrop-filter: blur(10px);
@@ -25,13 +25,13 @@
   font-size: 13px;
   position: absolute;
   z-index: 1;
-  background-color: #00246B;
-  border: 2px solid #ffffff;
+  background-color: #DEE3DD;
+  border: 2px solid #000;
   border-radius: 0px 15px 15px 15px;
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
 }
 .dropdown-content a {
-  color: #ffffff;
+  color: #000;
   padding: 8px 10px;
   text-decoration: none;
   display: block;

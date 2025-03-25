@@ -340,7 +340,7 @@ function App() {
             {/* Previous Button */}
             <li className={`page-item ${currentPage === 1 ? "disabled opacity-50" : ""}`}>
               <button
-                className="page-link px-3 py-2 border rounded-lg bg-white text-gray-700 shadow-sm hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700"
+                className="page-link px-3 py-2 border rounded-lg previous-pagination-btn text-gray-700 shadow-sm hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700"
                 onClick={() => onPageChange(currentPage - 1)}
                 disabled={currentPage === 1}
               >
@@ -352,9 +352,9 @@ function App() {
             {pagesAroundCurrent.map((page) => (
               <li key={page} className={`page-item ${currentPage === page ? "active" : ""}`}>
                 <button
-                  className={`page-link px-3 py-2 border rounded-lg ${
+                  className={`px-3 py-2 border rounded-lg ${
                     currentPage === page
-                      ? "bg-blue-500 text-white"
+                      ? "text-black active-pagination-btn"
                       : "bg-white text-gray-700 hover:bg-gray-100"
                   } shadow-sm dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700`}
                   onClick={() => onPageChange(page)}
@@ -367,7 +367,7 @@ function App() {
             {/* Next Button */}
             <li className={`page-item ${currentPage === totalPages ? "disabled opacity-50" : ""}`}>
               <button
-                className="page-link px-3 py-2 border rounded-lg bg-white text-gray-700 shadow-sm hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700"
+                className="page-link px-3 py-2 border rounded-lg next-pagination-btn text-gray-700 shadow-sm hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700"
                 onClick={() => onPageChange(currentPage + 1)}
                 disabled={currentPage === totalPages}
               >

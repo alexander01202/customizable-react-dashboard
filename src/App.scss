@@ -71,3 +71,14 @@ table{
     max-width: 250px; /* Adjust as needed */
     vertical-align: bottom; /* Optional: to vertically align with the icon */
 }
+
+.previous-pagination-btn,
+.next-pagination-btn
+{
+    background: $secondary !important;
+    color: $primary !important;
+}
+
+.active-pagination-btn{
+    background: $primary !important;
+}

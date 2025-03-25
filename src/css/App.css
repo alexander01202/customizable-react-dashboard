@@ -57,7 +57,7 @@ table tbody a {
 }
 
 .subdomain.selected {
-  background-color: #ffffff;
+  background-color: #000;
   border: 2px solid #0056ff;
   transition: all 0.1s ease-in-out;
 }
@@ -68,4 +68,14 @@ table tbody a {
   text-overflow: ellipsis;
   max-width: 250px; /* Adjust as needed */
   vertical-align: bottom; /* Optional: to vertically align with the icon */
+}
+
+.previous-pagination-btn,
+.next-pagination-btn {
+  background: #000 !important;
+  color: #DEE3DD !important;
+}
+
+.active-pagination-btn {
+  background: #DEE3DD !important;
 }

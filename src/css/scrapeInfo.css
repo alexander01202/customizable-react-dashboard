@@ -19,7 +19,7 @@
 }
 
 .box:not(.box-skeleton) {
-  background: #ffffff;
+  background: #000;
 }
 .box:not(.box-skeleton):hover {
   color: #fff;
