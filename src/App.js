@@ -76,10 +76,8 @@ function App() {
   }, [data]);
 
   useEffect(() => {
-    console.log('hello')
     setIsLoading(true);
     const getData = async () => {
-      console.log('hi')
       try {
         const req = await fetch(REACT_APP_BACKEND_URL + "/documents/scraped-urls", {
           mode: "cors",
@@ -88,12 +86,9 @@ function App() {
         const {status, data} = await req.json()
         if (status) {
           setData(data)
-          console.log(data)
         }
-        console.log(status)
         setIsLoading(false);
       } catch (error) {
-        console.log(error)
         toast.error(String(error));
       }
     };
