@@ -23,18 +23,18 @@ export const TableRow = ({ item, index, onEdit, onDelete }) => {
       <td>
         <Link 
           className="ellipsis" 
-          to={item["source"]} 
+          to={item["source_website"]}
           target="_blank" 
           style={{ color: "blue", textDecoration:"underline" }}
         >
-          {item["source"]}
+          {item["source_website"]}
         </Link>
       </td>
       <td style={{ alignContent:'center', textTransform:'capitalize' }}>
         {item['type']}
       </td>
       <td>
-        {item['published']}
+        {item['published_date']}
       </td>
       <td>
         <div className="flex gap-6 items-center">

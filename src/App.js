@@ -76,20 +76,28 @@ function App() {
   }, [data]);
 
   useEffect(() => {
-    setIsLoading(false);
-    // const getData = async () => {
-    //   try {
-    //     const req  = await fetch(REACT_APP_BACKEND_URL + "/csvArticles")
-    //     const {status, data} = await req.json()
-    //     if (status) {
-    //       setData(data)
-    //     }
-    //     setIsLoading(false);
-    //   } catch (error) {
-    //     toast.error(error);
-    //   }
-    // };
-    // getData();
+    console.log('hello')
+    setIsLoading(true);
+    const getData = async () => {
+      console.log('hi')
+      try {
+        const req = await fetch("http://127.0.0.1:5500/documents/scraped-urls", {
+          mode: "cors",
+        });
+
+        const {status, data} = await req.json()
+        if (status) {
+          setData(data)
+          console.log(data)
+        }
+        console.log(status)
+        setIsLoading(false);
+      } catch (error) {
+        console.log(error)
+        toast.error(String(error));
+      }
+    };
+    getData();
   }, [refreshData]);
 
   const defaultOptions = {
@@ -286,17 +294,48 @@ function App() {
           </thead>
           <tbody>
           {
-            currentItems?.map((item, index) => (
-              <TableRow 
-                key={index} 
-                item={item} 
-                index={index} 
-                onEdit={handleEdit}
-                onDelete={handleDelete}
-              />
-            ))
+            isLoading ? (
+              <tr>
+                <td colspan="6" className="text-center align-middle">
+                  <BallTriangle
+                    height="80"
+                    width="80"
+                    color="#000"
+                    ariaLabel="ball-triangle-loading"
+                    wrapperStyle={{ display: "block" }}
+                    wrapperClass="blocks-wrapper"
+                    visible={true}
+                  />
+                </td>
+              </tr>
+            )
+            : currentItems && currentItems.length > 0 ? 
+              currentItems?.map((item, index) => (
+                <TableRow 
+                  key={index} 
+                  item={item} 
+                  index={index} 
+                  onEdit={handleEdit}
+                  onDelete={handleDelete}
+                />
+              ))
+            :
+            (
+              <tr>
+                <td colSpan={"6"}>
+                  <h1 style={{ color:"#000" }} className="my-2 empty-records">
+                    <b>No SEC Alerts Found</b>
+                  </h1>
+                  <Lottie
+                    options={defaultOptions}
+                    height={500}
+                    width={500}
+                    isClickToPauseDisabled={true}
+                  />
+                </td>
+              </tr>
+            )
           }
-          {/* ----------------------pagination------------- */}
           </tbody>
         </Table>
 
