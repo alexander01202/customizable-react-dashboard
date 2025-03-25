@@ -30,8 +30,8 @@ export const TableRow = ({ item, index, onEdit, onDelete }) => {
           {item["source_website"]}
         </Link>
       </td>
-      <td style={{ alignContent:'center', textTransform:'capitalize' }}>
-        {item['type']}
+      <td style={{ alignContent:'center' }}>
+        {item['type']?.replaceAll('_', ' ')?.toLowerCase()}
       </td>
       <td>
         {item['published_date']}

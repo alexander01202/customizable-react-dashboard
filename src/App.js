@@ -305,7 +305,10 @@ function App() {
               </tr>
             )
             : currentItems && currentItems.length > 0 ? 
-              currentItems?.map((item, index) => (
+              currentItems
+              ?.filter(item => selectedRegulator ? item.source_regulator.toLowerCase() === selectedRegulator : item)
+              ?.filter(item => selectedType ? item.type.toLowerCase() === selectedType : item)
+              .map((item, index) => (
                 <TableRow 
                   key={index} 
                   item={item} 

@@ -7,7 +7,7 @@ const TypeFilter = ({ style, onSelect }) => {
     <select 
       name="types" 
       style={style} 
-      onChange={(e) => onSelect(e.target.value)}
+      onChange={(e) => onSelect(e.target.value?.toLowerCase())}
     >
       {TYPE_OPTIONS.map((option) => (
         <option key={option.value} value={option.value}>

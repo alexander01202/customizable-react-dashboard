@@ -2,7 +2,7 @@
 export const TYPE_OPTIONS = [
     { value: '', label: 'All Types' },
     { value: 'press_releases', label: 'Press Releases' },
-    { value: 'speeches_statements', label: 'Speeches And Statements' },
+    { value: 'speech', label: 'Speeches And Statements' },
     { value: 'meetings_events', label: 'Meetings & Events' },
     { value: 'past_meetings_events', label: 'Past Meetings & Events' },
     { value: 'sec_videos', label: 'Sec Videos' },
