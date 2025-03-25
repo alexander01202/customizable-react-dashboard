@@ -81,7 +81,7 @@ function App() {
     const getData = async () => {
       console.log('hi')
       try {
-        const req = await fetch("http://127.0.0.1:5500/documents/scraped-urls", {
+        const req = await fetch(REACT_APP_BACKEND_URL + "/documents/scraped-urls", {
           mode: "cors",
         });
 
